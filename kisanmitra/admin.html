@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Government APMC Mandi Officer Portal — KisanMitra</title>
+  <meta name="description" content="Dedicated administrative operating suite for Government Mandi Superintendents, Weighbridge Operators, and Agriculture Officers." />
+  <meta name="theme-color" content="#1b4332" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">🌾</span>
+        <span class="logo-text">Kisan<span class="logo-accent">Mitra</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#mandi-locator" data-i18n="nav_find_mandi">📍 Find Mandi</a></li>
+        <li><a href="index.html#mandi-directory" data-i18n="nav_directory">🏛️ State Directory</a></li>
+        <li><a href="index.html#how-it-works" data-i18n="nav_how_it_works">How It Works</a></li>
+      </ul>
+      <div class="nav-actions">
+        <!-- Global Language Selector in Navbar -->
+        <div class="lang-selector-wrap">
+          <span class="lang-icon">🌐</span>
+          <select id="globalLangSelect" class="lang-dropdown" aria-label="Select Language">
+            <option value="en" selected>English</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+          </select>
+        </div>
+        <!-- Dynamic Login / Profile Area -->
+        <div id="navAuthArea" style="display: flex; gap: 8px; align-items: center;">
+          <button class="btn btn-outline" id="navRegisterBtn" style="padding: 7px 14px; font-weight: 600; font-size: 0.85rem; border: 1.5px solid var(--primary); color: var(--primary);">
+            📝 Register
+          </button>
+          <button class="btn btn-gold" id="navLoginBtn" style="padding: 7px 16px; font-weight: 600; font-size: 0.85rem;">
+            🔑 Login
+          </button>
+        </div>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-hero">
+    <div class="page-hero-container">
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a> &gt; <span>Official Mandi Admin Portal</span>
+      </div>
+      <h1 class="page-title" data-i18n="admin_title">🏛️ Government APMC Mandi Operating Suite</h1>
+      <p class="page-subtitle" data-i18n="admin_desc">Secure control center for Mandi Superintendents, Weighbridge Staff, and Accounts Officers to operate isolated tokens, weighment scales, and DBT payouts.</p>
+    </div>
+  </div>
+
+  <!-- ===== AUTHENTICATION GATE (LOGIN SCREEN) ===== -->
+  <div id="adminLoginGate" class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-emblem">🏛️</div>
+        <h2>APMC Officer Authentication</h2>
+        <p>Enter your designated Mandi Centre credentials to access the live operations suite.</p>
+      </div>
+
+      <div class="demo-pill">
+        <strong>💡 Demo Mandi Officer Credentials:</strong><br/>
+        • Officer ID: <code>TN-MANDI-101</code><br/>
+        • PIN / Password: <code>1234</code><br/>
+        • <em>You can also select any Mandi from the list.</em>
+      </div>
+
+      <div id="adminAuthError" class="auth-error-msg">
+        Invalid Officer ID or Security PIN. Please check demo credentials.
+      </div>
+
+      <form id="adminAuthForm">
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label for="loginMandiSelect"><strong>Select Operating Mandi Centre:</strong></label>
+          <select id="loginMandiSelect" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label for="loginOfficerId"><strong>Officer / Employee ID:</strong></label>
+          <input type="text" id="loginOfficerId" placeholder="e.g. TN-MANDI-101" required value="TN-MANDI-101" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label for="loginPin"><strong>Security PIN / Password:</strong></label>
+          <input type="password" id="loginPin" placeholder="Enter 4-digit PIN" required value="1234" />
+        </div>
+
+        <div class="form-group" style="margin-bottom: 24px;">
+          <label for="loginCaptcha"><strong>Security Verification:</strong></label>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="padding: 10px 16px; background: #e2e8f0; font-weight: 800; font-family: monospace; letter-spacing: 4px; border-radius: 6px; user-select: none;" id="captchaCode">7A9K</div>
+            <input type="text" id="loginCaptcha" placeholder="Enter characters" style="flex: 1;" required value="7A9K" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-gold btn-lg" style="width: 100%;">
+          <span>🔐 Secure Officer Login &amp; Open Command Center</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== LOGGED-IN APMC MANDI OPERATING SUITE ===== -->
+  <main id="adminMainSuite" class="admin-section" style="display: none; padding: 40px 0 100px;">
+    <div class="container">
+      
+      <div class="mandi-admin-suite">
+        <!-- Top Mandi Selector Bar -->
+        <div class="admin-topbar">
+          <div class="admin-selector-wrap">
+            <label for="adminMandiSelect"><span class="mandi-icon">🏛️</span> Operating Centre:</label>
+            <select id="adminMandiSelect" class="admin-mandi-dropdown">
+              <!-- Dynamically populated with all mandis -->
+            </select>
+          </div>
+          <div class="admin-officer-info">
+            <div class="officer-badge">
+              <span class="online-dot"></span>
+              <span id="adminOfficerName">Mandi Superintendent: Suresh Kulkarni</span>
+            </div>
+            <span class="admin-mandi-tag" id="adminMandiTag">APMC Grade A | Reg: MH-APMC-042</span>
+            <button class="btn btn-sm btn-outline-danger" id="adminLogoutBtn" style="margin-left: 10px;">🚪 Logout / Exit</button>
+          </div>
+        </div>
+
+        <!-- Admin Navigation Tabs -->
+        <div class="admin-nav-tabs">
+          <button class="admin-tab-btn active" data-tab="tab-overview">
+            <span>📊 Live Overview</span>
+          </button>
+          <button class="admin-tab-btn" data-tab="tab-queue">
+            <span>👨‍🌾 Live Queue &amp; Calling</span>
+            <span class="tab-count-badge" id="adminQueueCountBadge">4</span>
+          </button>
+          <button class="admin-tab-btn" data-tab="tab-weighbridge">
+            <span>⚖️ IoT Weighbridge Terminal</span>
+          </button>
+          <button class="admin-tab-btn" data-tab="tab-slots">
+            <span>📅 Slot &amp; Capacity Control</span>
+          </button>
+          <button class="admin-tab-btn" data-tab="tab-msp">
+            <span>🌾 Daily MSP Rates Master</span>
+          </button>
+          <button class="admin-tab-btn" data-tab="tab-reports">
+            <span>💳 DBT Settlements &amp; Reports</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: Overview -->
+        <div class="admin-tab-content active" id="tab-overview">
+          <!-- Overview Stats -->
+          <div class="dash-stats-row">
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon blue-bg">👨‍🌾</div>
+              <div class="dash-stat-info">
+                <span class="dash-stat-val" id="statTodayTotal">148</span>
+                <span class="dash-stat-label">Total Bookings Today</span>
+              </div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon green-bg">✅</div>
+              <div class="dash-stat-info">
+                <span class="dash-stat-val" id="statProcessed">112</span>
+                <span class="dash-stat-label">Procured &amp; Weighed</span>
+              </div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon amber-bg">⏳</div>
+              <div class="dash-stat-info">
+                <span class="dash-stat-val" id="statInQueue">36</span>
+                <span class="dash-stat-label">Currently in Queue</span>
+              </div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="dash-stat-icon rose-bg">₹</div>
+              <div class="dash-stat-info">
+                <span class="dash-stat-val" id="statDisbursed">₹24.8 Lakh</span>
+                <span class="dash-stat-label">DBT Payouts Settled</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Calling Banner -->
+          <div class="now-serving-banner">
+            <div class="serving-left">
+              <div class="serving-tag">📢 NOW SERVING AT WEIGHBRIDGE #1</div>
+              <div class="serving-token" id="nowServingToken">Token #KM-2045</div>
+              <div class="serving-details" id="nowServingDetails">Farmer: Ramesh Patil | Crop: Wheat (12 Qtl) | Gate 1</div>
+            </div>
+            <div class="serving-right">
+              <button class="btn btn-gold btn-lg" id="overviewCallNextBtn">
+                <span>🔊 Call Next Farmer</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Centre Queue Quick Preview -->
+          <div class="dash-table-section">
+            <div class="table-header-row">
+              <h4>Today's Mandi Token Queue (<span id="mandiNameTableTitle">Nashik APMC</span>)</h4>
+              <span class="badge-tag green">Live Syncing</span>
+            </div>
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Token #</th>
+                  <th>Farmer Name</th>
+                  <th>Mobile</th>
+                  <th>Crop</th>
+                  <th>Est. Qty</th>
+                  <th>Slot Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="overviewQueueTableBody">
+                <!-- Injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 2: Queue Calling Engine -->
+        <div class="admin-tab-content" id="tab-queue">
+          <div class="queue-control-header">
+            <div class="qch-left">
+              <h3>Live Token Dispatcher &amp; Calling System</h3>
+              <p>Advance farmer tokens across inspection, IoT weighbridge, and DBT payment clearance.</p>
+            </div>
+            <div class="qch-actions">
+              <button class="btn btn-gold" id="callNextTokenMainBtn">
+                <span>🔊 Announce &amp; Call Next</span>
+              </button>
+              <button class="btn btn-outline" id="refreshQueueBtn">
+                <span>🔄 Refresh Queue</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="queue-calling-board">
+            <div class="call-display-box">
+              <span class="call-label">ACTIVE TOKEN ON DISPLAY</span>
+              <div class="huge-token-number" id="boardActiveToken">#KM-2045</div>
+              <div class="board-farmer-meta" id="boardActiveMeta">Farmer: Ramesh Patil • Crop: Wheat • Slot: 09:00 AM</div>
+              <div class="call-controls-row">
+                <button class="btn btn-sm btn-outline" id="repeatCallSoundBtn">🔔 Ring Bell Again</button>
+                <button class="btn btn-sm btn-primary" id="advanceCurrentTokenBtn">➔ Move to Next Stage</button>
+              </div>
+            </div>
+            <div class="calling-quick-stats">
+              <div class="cqs-item">
+                <span class="cqs-num" id="queueWaitingCount">4</span>
+                <span class="cqs-lbl">Waiting at Yard</span>
+              </div>
+              <div class="cqs-item">
+                <span class="cqs-num" id="queueWeighingCount">2</span>
+                <span class="cqs-lbl">On Weighbridge</span>
+              </div>
+              <div class="cqs-item">
+                <span class="cqs-num" id="queueCompletedCount">18</span>
+                <span class="cqs-lbl">Done Today</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Manageable Queue Table -->
+          <div class="dash-table-section">
+            <div class="filter-table-bar">
+              <input type="text" id="queueSearchInput" placeholder="Filter by Token #, Farmer Name, or Crop..." />
+              <select id="queueStatusFilter">
+                <option value="all">All Statuses</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Gate In">Gate In</option>
+                <option value="Quality Check">Quality Check</option>
+                <option value="Weighing">Weighing</option>
+                <option value="Payment Ready">Payment Ready</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+            <table class="dash-table">
+              <thead>
+                <tr>
+                  <th>Token</th>
+                  <th>Farmer Name</th>
+                  <th>Contact</th>
+                  <th>Vehicle No.</th>
+                  <th>Crop</th>
+                  <th>Status</th>
+                  <th>Stage Action</th>
+                </tr>
+              </thead>
+              <tbody id="manageQueueTableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 3: IoT Weighbridge Terminal -->
+        <div class="admin-tab-content" id="tab-weighbridge">
+          <div class="weighbridge-container">
+            <div class="wb-form-card">
+              <div class="wb-header">
+                <div class="wb-icon">⚖️</div>
+                <div>
+                  <h3>IoT Digital Weighbridge Terminal</h3>
+                  <p>Connected Scale: <strong>Weighbridge Scale #01 (Calibrated)</strong></p>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="wbTokenSelect">Select Active Token</label>
+                  <select id="wbTokenSelect">
+                    <!-- Populated with currently waiting tokens -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="wbVehicleNo">Vehicle / Tractor Plate No.</label>
+                  <input type="text" id="wbVehicleNo" placeholder="e.g. MH-15-EG-4412" value="MH-15-EG-4412" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="wbCropSelect">Crop Variety</label>
+                  <select id="wbCropSelect">
+                    <option value="wheat" data-msp="2275">Wheat (MSP: ₹2,275/Qtl)</option>
+                    <option value="rice" data-msp="2300">Paddy / Rice (MSP: ₹2,300/Qtl)</option>
+                    <option value="soybean" data-msp="4892">Soybean (MSP: ₹4,892/Qtl)</option>
+                    <option value="cotton" data-msp="7121">Cotton (MSP: ₹7,121/Qtl)</option>
+                    <option value="mustard" data-msp="5650">Mustard (MSP: ₹5,650/Qtl)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="wbMoisture">Moisture Reading (%)</label>
+                  <input type="number" id="wbMoisture" value="11.8" step="0.1" min="5" max="30" />
+                </div>
+                <div class="form-group">
+                  <label for="wbQualityGrade">Quality Inspection Grade</label>
+                  <select id="wbQualityGrade">
+                    <option value="Grade-A (Premium APMC Standard)" selected>Grade-A (Premium — 100% MSP Rate)</option>
+                    <option value="Grade-B (Fair Average Quality)">Grade-B (FAQ Standard MSP)</option>
+                    <option value="Grade-C (High Moisture / Refraction)">Grade-C (High Moisture — ₹50/Qtl Deduction)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- IoT Scale Inputs -->
+              <div class="scale-readings-grid">
+                <div class="scale-box">
+                  <span class="scale-label">Gross Weight (Loaded Truck)</span>
+                  <div class="scale-input-wrap">
+                    <input type="number" id="wbGrossWeight" value="52.4" step="0.1" />
+                    <span class="scale-unit">Qtl</span>
+                  </div>
+                </div>
+                <div class="scale-operator">−</div>
+                <div class="scale-box">
+                  <span class="scale-label">Tare Weight (Empty Truck)</span>
+                  <div class="scale-input-wrap">
+                    <input type="number" id="wbTareWeight" value="38.0" step="0.1" />
+                    <span class="scale-unit">Qtl</span>
+                  </div>
+                </div>
+                <div class="scale-operator">=</div>
+                <div class="scale-box highlight">
+                  <span class="scale-label">Certified Net Weight</span>
+                  <div class="scale-value" id="wbNetWeightDisplay">14.4 Qtl</div>
+                </div>
+              </div>
+
+              <div class="payout-calculation-banner">
+                <div class="payout-left">
+                  <span>Verified Government MSP Payout:</span>
+                  <div class="payout-amount" id="wbTotalPayoutDisplay">₹1,60,704</div>
+                  <small id="wbCalculationBreakdown">14.4 Quintals × ₹11,160/Qtl (Grade-A)</small>
+                </div>
+                <div class="payout-right" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button class="btn btn-gold btn-lg" id="generateWeighSlipBtn">
+                    <span>⚖️ Certify Weight &amp; Quality, Release DBT &amp; Dispatch Gmail</span>
+                  </button>
+                  <button type="button" class="btn btn-outline" id="viewAdminEmailBtn">
+                    <span>📬 View Gmail Intimation</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Weighment Slips List -->
+            <div class="recent-slips-card">
+              <h4>Recent Weighment Slips (Today)</h4>
+              <div class="slips-list" id="recentSlipsList">
+                <!-- Dynamically generated slips -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Slot & Capacity Controller -->
+        <div class="admin-tab-content" id="tab-slots">
+          <div class="slots-controller-card">
+            <div class="sc-header">
+              <div>
+                <h3>Daily Capacity &amp; Time Slot Management</h3>
+                <p>Configure slot quotas per time window to balance vehicular traffic and prevent yard congestion.</p>
+              </div>
+              <button class="btn btn-primary" id="saveSlotConfigBtn">💾 Save Mandi Slot Settings</button>
+            </div>
+
+            <div class="slots-config-grid" id="slotsConfigGrid">
+              <!-- Dynamically populated per mandi -->
+            </div>
+
+            <div class="emergency-override-box">
+              <h4>🚨 Emergency Capacity Overrides</h4>
+              <p>Need to handle sudden post-harvest influx or weather alerts?</p>
+              <div class="emergency-actions">
+                <button class="btn btn-outline" id="addEmergencySlotBtn">+ Add 10 Emergency Slots Today</button>
+                <button class="btn btn-outline" id="freezeBookingBtn">❄️ Temporary Freeze New Bookings</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: Daily MSP Rates Master -->
+        <div class="admin-tab-content" id="tab-msp">
+          <div class="msp-master-card">
+            <div class="sc-header">
+              <div>
+                <h3>Prevailing Government MSP &amp; Market Procurement Rates</h3>
+                <p>Mandi Superintendent can update active buying rates and permissible moisture tolerance thresholds.</p>
+              </div>
+              <button class="btn btn-gold" id="saveMspRatesBtn">💾 Update Mandi Rates</button>
+            </div>
+
+            <div class="msp-table-wrap">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Crop Name</th>
+                    <th>Govt MSP Rate (₹/Quintal)</th>
+                    <th>Max Allowed Moisture (%)</th>
+                    <th>Moisture Discount Deduction</th>
+                    <th>Procurement Status</th>
+                  </tr>
+                </thead>
+                <tbody id="adminMspTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 6: DBT Settlements & Reports -->
+        <div class="admin-tab-content" id="tab-reports">
+          <div class="reports-container">
+            <div class="report-header-banner">
+              <div>
+                <h3>Direct Bank Transfer (DBT) Daily Settlement Batch</h3>
+                <p>Export official procurement logbooks for State Agriculture Marketing Board &amp; PFMS.</p>
+              </div>
+              <button class="btn btn-primary" id="exportReportBtn">📥 Export Mandi Daily Report (CSV / PDF)</button>
+            </div>
+
+            <div class="settlement-summary-cards">
+              <div class="ssc-card">
+                <span class="ssc-title">Total Procured Today</span>
+                <strong class="ssc-val" id="reportTotalProcured">1,420 Quintals</strong>
+              </div>
+              <div class="ssc-card">
+                <span class="ssc-title">Total Farmers Paid</span>
+                <strong class="ssc-val" id="reportFarmersPaid">112 Farmers</strong>
+              </div>
+              <div class="ssc-card">
+                <span class="ssc-title">Total DBT Disbursed</span>
+                <strong class="ssc-val" id="reportTotalDisbursed">₹32.45 Lakhs</strong>
+              </div>
+              <div class="ssc-card">
+                <span class="ssc-title">Average Yard Wait Time</span>
+                <strong class="ssc-val text-green" id="reportAvgWait">22 Minutes</strong>
+              </div>
+            </div>
+
+            <div class="dash-table-section">
+              <h4>Completed DBT Transactions Today</h4>
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Ref #</th>
+                    <th>Farmer Name</th>
+                    <th>Bank / IFSC</th>
+                    <th>Crop &amp; Net Qty</th>
+                    <th>Amount (₹)</th>
+                    <th>UTR / Ref Number</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="settlementTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== WEIGHMENT SLIP MODAL (PRINTABLE OFFICIAL RECEIPT) ===== -->
+  <div class="modal-overlay" id="weighSlipModal">
+    <div class="modal-card weigh-slip-modal-card">
+      <button class="modal-close" id="closeSlipModal">&times;</button>
+      
+      <!-- Printable Weighment Slip Content -->
+      <div class="official-weigh-slip" id="printableSlipArea">
+        <div class="slip-header-border">
+          <div class="slip-emblem">🌾</div>
+          <div class="slip-gov-title">GOVERNMENT APMC REGULATED MARKET</div>
+          <div class="slip-sub-title">DEPARTMENT OF AGRICULTURAL MARKETING &amp; AGRI BUSINESS</div>
+          <div class="slip-mandi-info" id="slipMandiHeader">Pollachi Regulated Market, Coimbatore, Tamil Nadu</div>
+          <div class="slip-type-badge">OFFICIAL ELECTRONIC WEIGHMENT &amp; PROCUREMENT CERTIFICATE</div>
+        </div>
+
+        <div class="slip-meta-bar">
+          <div><strong>Receipt No:</strong> <span id="slipReceiptNo">WBL-2026-90412</span></div>
+          <div><strong>Date:</strong> <span id="slipDateDisplay">11-Sep-2026 10:45 AM</span></div>
+          <div><strong>Scale ID:</strong> <span id="slipScaleId">WB-OMRON-01</span></div>
+        </div>
+
+        <div class="slip-body-grid">
+          <div class="slip-field-col">
+            <div class="slip-field"><label>Token / Pass #:</label><strong id="slipTokenNo">#KM-2048</strong></div>
+            <div class="slip-field"><label>Farmer Name:</label><strong id="slipFarmerName">Ramesh Kumar</strong></div>
+            <div class="slip-field"><label>Farmer Mobile:</label><span id="slipFarmerMobile">9876543210</span></div>
+            <div class="slip-field"><label>Aadhaar / Kisan ID:</label><span id="slipAadhaar">XXXX-XXXX-1123</span></div>
+          </div>
+          <div class="slip-field-col">
+            <div class="slip-field"><label>Vehicle / Plate No:</label><strong id="slipVehicleNo">TN-37-BX-4091 (Tractor)</strong></div>
+            <div class="slip-field"><label>Commodity Variety:</label><strong id="slipCropName">Copra / Coconut</strong></div>
+            <div class="slip-field"><label>Moisture Content:</label><span id="slipMoistureDisplay">11.8% (Acceptable)</span></div>
+            <div class="slip-field"><label>Procurement Gate:</label><span>Gate #1 (Weighbridge 1)</span></div>
+          </div>
+        </div>
+
+        <table class="slip-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Weight / Rate</th>
+              <th>Deduction</th>
+              <th>Net Approved</th>
+              <th>Approved Value (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Loaded Gross Weight:</strong></td>
+              <td id="slipGrossWeight">52.40 Qtl</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>Empty Tare Weight:</strong></td>
+              <td id="slipTareWeight">38.00 Qtl</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+            </tr>
+            <tr class="slip-net-row">
+              <td><strong>Net Certified Weight:</strong></td>
+              <td id="slipNetWeight"><strong>14.40 Qtl</strong></td>
+              <td id="slipMoistureDeduction">0.00 Qtl</td>
+              <td><strong id="slipFinalNetWeight">14.40 Qtl</strong></td>
+              <td><strong class="slip-amount" id="slipTotalAmount">₹1,60,704</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="slip-dbt-footer">
+          <div class="dbt-status-box">
+            <span class="dbt-icon">💳</span>
+            <div>
+              <strong>Payment Mode: Direct DBT Bank Transfer</strong><br/>
+              <small>PFMS Reference: PFMS/TN/2026/09/882194 | Bank Credit within 24 Hrs</small>
+            </div>
+          </div>
+          <div class="slip-sign-box">
+            <div class="sign-line">Authorized Weighbridge Officer</div>
+            <small>APMC Electronic Seal</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="slip-modal-actions">
+        <button class="btn btn-outline" id="closeSlipBtn2">Close Window</button>
+        <button class="btn btn-gold btn-lg" id="printSlipBtn" onclick="window.print()">🖨️ Print Official Weighment Slip</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <span class="logo-icon">🌾</span>
+            <span class="logo-text">Kisan<span class="logo-accent">Mitra</span></span>
+          </a>
+          <p class="footer-tagline">
+            Empowering Indian farmers through digitized mandi procurement, intelligent slot scheduling, live queue visibility, and instant DBT payouts.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="index.html">Home</a>
+          <a href="book-slot.html">Book Slot</a>
+          <a href="admin.html">Officer Admin Portal</a>
+          <a href="index.html#mandi-locator">Find Mandi</a>
+          <a href="index.html#token-tracker">Track Pass</a>
+        </div>
+        <div class="footer-col">
+          <h4>National APMC Helplines</h4>
+          <a href="tel:18001801551">📞 Kisan Call Centre: 1800-180-1551</a>
+          <a href="tel:18002700224">📞 e-NAM National Toll Free: 1800-270-0224</a>
+          <a href="mailto:support@kisanmitra.gov.in">✉️ support@kisanmitra.gov.in</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 KisanMitra — National Agricultural Procurement System. Made for Indian Farmers.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GMAIL DIGITAL INTIMATION MODAL -->
+  <div class="gmail-modal-overlay" id="gmailModal">
+    <div class="gmail-window">
+      <div class="gmail-header-bar">
+        <div class="gmail-brand">
+          <div class="gmail-logo-icon">M</div>
+          <span class="gmail-title">Gmail</span>
+          <span class="gmail-inbox-tag">Official Mandi Dispatch</span>
+        </div>
+        <button class="gmail-close-btn" id="closeGmailModal">&times;</button>
+      </div>
+      <div class="gmail-body">
+        <div class="email-subject-line" id="emailSubjectLine">
+          <span>📢 [APMC Pollachi] Verified Procurement Intimation &amp; DBT Settlement — Token #KM-2048</span>
+        </div>
+        <div class="email-meta-card">
+          <div class="sender-info">
+            <div class="sender-avatar">🏛️</div>
+            <div class="sender-details">
+              <strong id="emailSenderName">Government APMC Procurement Cell, Pollachi Regulated Market</strong>
+              <div class="sender-email" id="emailSenderAddress">&lt;apmc.pollachi@kisanmitra.gov.in&gt;</div>
+              <div class="recipient-info">to: <span id="emailRecipient">Ramesh Kumar (9876543210)</span></div>
+            </div>
+          </div>
+          <div class="email-timestamp" id="emailTimestamp">Today, 10:48 AM</div>
+        </div>
+
+        <div class="apmc-advice-container">
+          <div class="apmc-advice-header">
+            <div>
+              <h3>GOVERNMENT APMC MANDI PROCUREMENT ADVICE</h3>
+              <p>DIRECT BENEFIT TRANSFER (PFMS) DISBURSEMENT INTIMATION</p>
+            </div>
+            <div class="apmc-verified-stamp" id="emailStatusStamp">✓ CERTIFIED WEIGHMENT &amp; GRADE</div>
+          </div>
+          <div class="apmc-advice-body">
+            <div class="advice-grid">
+              <div class="advice-item">
+                <span class="item-label">Token &amp; Pass Reference:</span>
+                <span class="item-val" id="emailTokenNum">#KM-2048</span>
+              </div>
+              <div class="advice-item">
+                <span class="item-label">Procuring Mandi Centre:</span>
+                <span class="item-val" id="emailMandiName">Pollachi Regulated Market</span>
+              </div>
+              <div class="advice-item">
+                <span class="item-label">Commodity &amp; Quality Grade:</span>
+                <span class="item-val" id="emailCropGrade">Copra / Coconut (Grade-A Premium)</span>
+              </div>
+              <div class="advice-item">
+                <span class="item-label">Moisture Reading &amp; Analysis:</span>
+                <span class="item-val" id="emailMoisture">11.8% (Acceptable - Zero Penalty)</span>
+              </div>
+              <div class="advice-item">
+                <span class="item-label">Gross Weighbridge Scale:</span>
+                <span class="item-val" id="emailGrossWeight">52.40 Quintals</span>
+              </div>
+              <div class="advice-item">
+                <span class="item-label">Tare Weight (Empty Truck):</span>
+                <span class="item-val" id="emailTareWeight">38.00 Quintals</span>
+              </div>
+              <div class="advice-item">
+                <span class="item-label">Certified Net Weight:</span>
+                <span class="item-val highlight" id="emailNetWeight">14.40 Quintals</span>
+              </div>
+              <div class="advice-item">
+                <span class="item-label">Applicable MSP Rate:</span>
+                <span class="item-val" id="emailMspRate">₹11,160 / Quintal</span>
+              </div>
+            </div>
+
+            <div class="payout-final-banner">
+              <div class="pfb-left">
+                <span>FINAL VERIFIED DBT AMOUNT TRANSFERRED</span>
+                <strong id="emailFinalPayout">₹1,60,704</strong>
+              </div>
+              <div class="pfb-right">
+                <span class="dbt-status-pill">✓ Direct Bank Credit via PFMS</span>
+                <div>UTR: <code id="emailUtr">PFMS-DBT-2026-99412</code></div>
+              </div>
+            </div>
+
+            <div class="advice-footer-note">
+              This document is a digitally certified Electronic Mandi Receipt (e-WBR) generated by the Government Agriculture Marketing Board. The payment has been initiated directly to the registered bank account through PFMS.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gmail-actions-bar">
+        <button class="btn btn-outline" onclick="window.print()">🖨️ Print Advice</button>
+        <button class="btn btn-gold" id="closeGmailModalBtn">Close Intimation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIFIED LOGIN MODAL -->
+  <div class="modal-overlay" id="unifiedLoginModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeUnifiedLoginModal">&times;</button>
+      <div class="modal-header">
+        <div class="modal-icon">🌾</div>
+        <h2>Sign In to KisanMitra</h2>
+        <p>Choose your role to access farmer slot booking or mandi management</p>
+      </div>
+
+      <div class="role-selector">
+        <button type="button" class="role-pill" id="tabFarmerLoginBtn">👨‍🌾 Farmer Login</button>
+        <button type="button" class="role-pill active" id="tabAdminLoginBtn">🏛️ Mandi Admin Login</button>
+      </div>
+
+      <!-- Farmer Login Sub-section -->
+      <div id="farmerLoginSection" class="auth-sub-section" style="display: none;">
+        <div class="demo-pill" style="margin-bottom: 16px;">
+          <strong>💡 Demo Farmer Login:</strong> Mobile: <code>9876543210</code> | OTP: <code>1234</code>
+        </div>
+        <form id="farmerLoginForm" class="modal-form">
+          <div class="form-group">
+            <label>Mobile Number</label>
+            <div class="input-with-prefix">
+              <span class="input-prefix">🇮🇳 +91</span>
+              <input type="tel" id="farmerLoginPhone" placeholder="Enter 10-digit mobile number" maxlength="10" value="9876543210" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Enter 4-Digit OTP</label>
+            <div class="otp-inputs">
+              <input type="text" maxlength="1" class="otp-box" value="1" />
+              <input type="text" maxlength="1" class="otp-box" value="2" />
+              <input type="text" maxlength="1" class="otp-box" value="3" />
+              <input type="text" maxlength="1" class="otp-box" value="4" />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 10px;">
+            <span>👨‍🌾 Login as Farmer</span>
+          </button>
+          <button type="button" class="btn btn-outline btn-block" id="farmerQuickDemoBtn" style="margin-top: 10px;">
+            <span>⚡ Instant Demo Login (Ramesh Kumar)</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Mandi Admin Login Sub-section -->
+      <div id="adminLoginSection" class="auth-sub-section">
+        <div class="demo-pill" style="margin-bottom: 16px;">
+          <strong>💡 Demo Mandi Officer:</strong> ID: <code>TN-MANDI-101</code> | PIN: <code>1234</code>
+        </div>
+        <form id="modalAdminLoginForm" class="modal-form">
+          <div class="form-group">
+            <label>Select Operating Mandi Centre</label>
+            <select id="modalAdminMandiSelect" required></select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Officer ID</label>
+              <input type="text" id="modalOfficerId" value="TN-MANDI-101" required />
+            </div>
+            <div class="form-group">
+              <label>Security PIN</label>
+              <input type="password" id="modalOfficerPin" value="1234" maxlength="6" required />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gold btn-block btn-lg" style="margin-top: 10px;">
+            <span>🏛️ Open APMC Mandi Suite</span>
+          </button>
+          <button type="button" class="btn btn-outline btn-block" id="adminQuickDemoBtn" style="margin-top: 10px;">
+            <span>⚡ Instant Demo Admin Login (Pollachi)</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
