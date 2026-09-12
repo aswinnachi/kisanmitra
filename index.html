@@ -894,7 +894,7 @@
 
           <div class="form-group">
             <label>Real Gmail Address * (For Official Booking Intimation & Weighment Advice)</label>
-            <input type="email" id="regEmail" placeholder="e.g. aswinnchi810@gmail.com" value="aswinnchi810@gmail.com" required />
+            <input type="email" id="regEmail" placeholder="e.g. farmer@gmail.com" required />
             <small style="color: #64748b; font-size: 0.78rem;">Formal booking confirmation and weighment price advice will be delivered to this Gmail.</small>
           </div>
 
@@ -1070,7 +1070,7 @@
             <div class="sender-details">
               <strong id="emailSenderName">Government APMC Procurement Cell</strong>
               <div class="sender-email" id="emailSenderAddress">&lt;apmc.procurement@kisanmitra.gov.in&gt;</div>
-              <div class="recipient-info">to: <span id="emailRecipient">Farmer (aswinnchi810@gmail.com)</span></div>
+              <div class="recipient-info">to: <span id="emailRecipient">Farmer</span></div>
             </div>
           </div>
           <div class="email-timestamp" id="emailTimestamp">Today, 10:48 AM</div>
@@ -1224,5 +1224,26 @@
   </div>
 
   <script src="script.js"></script>
+
+  <!-- ===== AI CHATBOT ===== -->
+  <div class="chat-widget" id="chatWidget">
+    <div class="chat-toggle" id="chatToggleBtn">
+      <span class="chat-icon">💬</span>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <h4>🌾 KisanBot (AI Help)</h4>
+        <button id="chatCloseBtn">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-msg bot-msg">Namaste! How can I help you today? Do you need help booking a slot?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button id="chatSendBtn">➤</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

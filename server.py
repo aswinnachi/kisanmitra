@@ -47,6 +47,10 @@ def dispatch_gmail_via_smtp(to_email, subject, body_html, body_text=""):
             server.sendmail(GMAIL_SENDER, [target, GMAIL_SENDER], msg.as_string())
         print(f"📧 [SMTP SUCCESS] Real Gmail sent to {target}")
         return True, "Delivered to Gmail Inbox"
+    except smtplib.SMTPAuthenticationError as auth_err:
+        print(f"📧 [SMTP AUTH FAILED] Please check your GMAIL_APP_PASSWORD in .env. It must be a 16-character App Password, not your regular password.")
+        print(f"   Original error: {auth_err}")
+        return False, f"Auth Error: {auth_err}"
     except Exception as err:
         print(f"📧 [SMTP Notice] Relay: {err}. Intimation saved to web digital outbox.")
         return False, str(err)
@@ -274,6 +278,50 @@ class KisanMitraHandler(SimpleHTTPRequestHandler):
             payload = json.loads(post_body)
         except Exception:
             payload = {}
+
+        # API: Chatbot using Gemini
+        if path == '/api/chat':
+            user_message = payload.get('message', '').strip()
+            if not user_message:
+                self.send_json(400, {'error': 'Message is required'})
+                return
+
+            gemini_api_key = os.environ.get('GEMINI_API_KEY')
+            if not gemini_api_key:
+                self.send_json(200, {'reply': 'I am KisanBot. The administrator has not configured my Gemini API key yet. How can I help you manually?'})
+                return
+
+            try:
+                import urllib.request
+                import urllib.error
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_api_key}"
+                
+                system_instruction = "You are KisanBot, an AI assistant for the KisanMitra platform. You help Indian farmers with booking APMC Mandi procurement slots, checking queues, understanding MSP, and DBT payments. Be concise, respectful, and helpful. Use simple language."
+                
+                req_data = {
+                    "contents": [{
+                        "parts": [{"text": user_message}]
+                    }],
+                    "systemInstruction": {
+                        "parts": [{"text": system_instruction}]
+                    },
+                    "generationConfig": {
+                        "temperature": 0.5,
+                        "maxOutputTokens": 200
+                    }
+                }
+                
+                req = urllib.request.Request(url, data=json.dumps(req_data).encode('utf-8'), headers={'Content-Type': 'application/json'})
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    res_body = response.read().decode('utf-8')
+                    res_json = json.loads(res_body)
+                    
+                    reply = res_json.get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text', 'Sorry, I am having trouble understanding right now.')
+                    self.send_json(200, {'reply': reply})
+            except Exception as e:
+                print(f"Gemini API Error: {e}")
+                self.send_json(500, {'error': 'Failed to reach AI service'})
+            return
 
         # API: Farmer Registration with Real Gmail
         if path == '/api/register':

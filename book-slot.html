@@ -183,7 +183,7 @@
 
           <div class="form-group" style="margin-bottom: 16px;">
             <label for="farmerEmailInput">Farmer Gmail Address * (For Official Booking Intimation & Weighment Advice)</label>
-            <input type="email" id="farmerEmailInput" placeholder="e.g. aswinnchi810@gmail.com" value="aswinnchi810@gmail.com" required />
+            <input type="email" id="farmerEmailInput" placeholder="e.g. farmer@gmail.com" required />
             <small style="color: #64748b; font-size: 0.8rem;">An official APMC intimation with date, time, place, quantity, product & price regulation notice will be delivered to this Gmail.</small>
           </div>
 
@@ -556,5 +556,26 @@
   </div>
 
   <script src="script.js"></script>
+
+  <!-- ===== AI CHATBOT ===== -->
+  <div class="chat-widget" id="chatWidget">
+    <div class="chat-toggle" id="chatToggleBtn">
+      <span class="chat-icon">💬</span>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <h4>🌾 KisanBot (AI Help)</h4>
+        <button id="chatCloseBtn">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-msg bot-msg">Namaste! How can I help you today? Do you need help booking a slot?</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type a message..." />
+        <button id="chatSendBtn">➤</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

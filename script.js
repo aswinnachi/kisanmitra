@@ -201,6 +201,11 @@ const I18N = {
     step3_schedule_header: 'Choose Reporting Date & Time Slot',
     btn_confirm_generate_pass: '🎟️ Confirm Booking & Generate Digital Pass',
     summary_header: '📊 Booking & MSP Calculation',
+
+    // Admin
+    admin_auth_title: 'APMC Officer Authentication',
+    admin_auth_subtitle: 'Enter your designated Mandi Centre credentials to access the live operations suite.',
+    admin_login_btn: '🔐 Secure Officer Login & Open Command Center',
     
     // Buttons
     btn_book_here: '🎟️ Book Slot',
@@ -317,6 +322,11 @@ const I18N = {
     th_status: 'நிலை',
     th_actions: 'செயல்பாடு',
     btn_advance: 'அடுத்த கட்டம் ➔',
+    
+    // Admin
+    admin_auth_title: 'APMC அதிகாரி அங்கீகாரம்',
+    admin_auth_subtitle: 'நேரலை செயல்பாட்டு தொகுப்பை அணுக உங்கள் மண்டி மைய சான்றுகளை உள்ளிடவும்.',
+    admin_login_btn: '🔐 பாதுகாப்பான அதிகாரி உள்நுழைவு',
 
     // Problem Section
     problem_label: 'பிரச்சினை',
@@ -479,6 +489,11 @@ const I18N = {
     th_status: 'स्थिति',
     th_actions: 'कार्रवाई',
     btn_advance: 'अगला चरण ➔',
+    
+    // Admin
+    admin_auth_title: 'APMC अधिकारी प्रमाणीकरण',
+    admin_auth_subtitle: 'लाइव ऑपरेशंस सूट तक पहुंचने के लिए अपने मंडी केंद्र के क्रेडेंशियल दर्ज करें।',
+    admin_login_btn: '🔐 सुरक्षित अधिकारी लॉगिन',
 
     // Problem Section
     problem_label: 'समस्या',
@@ -1106,14 +1121,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function calculatePincodeDistance(targetVal, mandi) {
     const t = String(targetVal).toLowerCase().trim();
-    if (!t) return 5.0;
+    if (!t || t.length < 3) return 45.0; // Avoid random numbers for short inputs like "1"
 
     // Exact Pincode Match
     if (t === mandi.pincode) return 2.2;
     if (mandi.pincode.startsWith(t.slice(0, 3))) return 14.5;
     if (mandi.districtName.toLowerCase().includes(t) || mandi.name.toLowerCase().includes(t)) return 4.8;
     if (mandi.stateName.toLowerCase().includes(t)) return 25.0;
-    return (40.0 + Math.random() * 50).toFixed(1);
+    
+    // Default deterministic distance based on string length to avoid random fluctuation
+    return (30.0 + (t.length * 2)).toFixed(1);
   }
 
   function renderPincodeResults(query) {
@@ -1701,7 +1718,7 @@ document.addEventListener('DOMContentLoaded', () => {
     regVerifyBtn?.addEventListener('click', async () => {
       const name = document.getElementById('regName')?.value.trim() || 'Aswin Nachi';
       const phone = document.getElementById('regPhone')?.value.trim() || '9443188921';
-      const email = document.getElementById('regEmail')?.value.trim() || 'aswinnchi810@gmail.com';
+      const email = document.getElementById('regEmail')?.value.trim() || '';
       const aadhaar = document.getElementById('regAadhaar')?.value.trim() || '7841-9920-1123';
       const mandi = document.getElementById('regMandi')?.value || 'tn_pollachi';
       const crop = document.getElementById('regCrop')?.value || 'Copra';
@@ -1782,7 +1799,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setFarmerSession({
         name: 'Ramesh Kumar',
         phone: phone,
-        email: 'aswinnchi810@gmail.com',
+        email: 'farmer@kisanmitra.gov.in',
         aadhaar: '7841-9920-1123',
         vehicleNo: 'TN-37-BX-4091'
       });
@@ -1902,7 +1919,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (farmerNameInput) farmerNameInput.value = farmer.name || 'Ramesh Kumar';
     if (farmerMobileInput) farmerMobileInput.value = farmer.phone || '9876543210';
-    if (farmerEmailInput) farmerEmailInput.value = farmer.email || 'aswinnchi810@gmail.com';
+    if (farmerEmailInput) farmerEmailInput.value = farmer.email || '';
     if (farmerAadhaarInput && farmer.aadhaar) farmerAadhaarInput.value = farmer.aadhaar;
     if (farmerVehicleInput && farmer.vehicleNo) farmerVehicleInput.value = farmer.vehicleNo;
 
@@ -2052,7 +2069,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const fMobile = farmerMobileInput?.value || farmer.phone || '9876543210';
       const fVehicle = farmerVehicleInput?.value || farmer.vehicleNo || 'TN-37-BX-4091';
       const fAadhaar = farmerAadhaarInput?.value || farmer.aadhaar || '7841-9920-1123';
-      const fEmail = farmerEmailInput?.value || farmer.email || 'aswinnchi810@gmail.com';
+      const fEmail = farmerEmailInput?.value || farmer.email || '';
       const mandiId = mandiSelect?.value || 'tn_pollachi';
       const mandi = MANDI_DATABASE.find(m => m.id === mandiId) || MANDI_DATABASE[0];
       const cropText = cropSelect?.options[cropSelect.selectedIndex]?.textContent.split('(')[0].trim() || 'Copra';
@@ -2428,7 +2445,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const mandi = MANDI_DATABASE.find(m => m.id === currentAdminMandiId);
           if (mandi) {
             // Check if count or tokens changed
-            const existingTokens = mandi.queue.map(q => q.token).join(',');
+            const existingTokens = mandi.queue ? mandi.queue.map(q => q.token).join(',') : '';
             const newTokens = data.queue.map(q => q.token).join(',');
             if (existingTokens !== newTokens) {
               mandi.queue = data.queue;
@@ -2509,7 +2526,9 @@ document.addEventListener('DOMContentLoaded', () => {
           adminMainSuite.style.display = 'block';
           adminMainSuite.scrollIntoView({ behavior: 'smooth' });
         }
-        loadAdminMandi(selectedMandi);
+        pollServerQueue().then(() => {
+          loadAdminMandi(selectedMandi);
+        });
         setInterval(pollServerQueue, 2500);
       } else {
         if (adminAuthError) {
@@ -2733,7 +2752,7 @@ document.addEventListener('DOMContentLoaded', () => {
       token: token,
       farmerName: 'Aswin Nachi',
       phone: '+91 9443188921',
-      email: 'aswinnchi810@gmail.com',
+      email: getFarmerSession()?.email || 'farmer@kisanmitra.gov.in',
       crop: 'Copra',
       estQty: 25.0,
       gate: 'Gate #1',
@@ -2766,7 +2785,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const adviceSubtitle = document.getElementById('adviceSubtitle');
     const footerNotice = document.getElementById('emailFooterNotice');
 
-    const farmerEmail = email?.toEmail || tokItem.email || 'aswinnchi810@gmail.com';
+    const farmerEmail = email?.toEmail || tokItem.email || getFarmerSession()?.email || 'farmer@kisanmitra.gov.in';
 
     if (isBooking) {
       if (subj) subj.textContent = email?.subject || `📋 [${mandi.name}] Official Procurement Slot Confirmation — Token ${token}`;
@@ -2796,8 +2815,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (dbtPill) dbtPill.textContent = 'Quotation issued post weighment & grading';
       if (utrEl) utrEl.textContent = 'Pending Inspection';
       if (footerNotice) footerNotice.textContent = email?.notice || 'IMPORTANT APMC NOTICE: As per Mandi Procurement Rules, the final quotation / purchase price is NOT opened or fixed at slot booking. The final product price will be officially certified on-site after physical weighbridge weighing (Gross - Tare) and moisture quality grading.';
+      
+      // Hide the payout final banner for booking preview
+      const pfb = document.querySelector('.payout-final-banner');
+      if (pfb) pfb.style.display = 'none';
     } else {
       // Verified final quotation & weighment advice
+      const pfb = document.querySelector('.payout-final-banner');
+      if (pfb) pfb.style.display = 'flex';
+      
       const net = email?.netWeight || tokItem.netWeight || 14.40;
       const msp = email?.mspRate || tokItem.mspRate || 11160;
       const finalAmt = email?.finalTotalPayout || tokItem.finalTotalPayout || Math.round(net * msp);
@@ -2879,3 +2905,64 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+// =========================================================
+// ===== AI CHATBOT LOGIC =====
+// =========================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const chatToggleBtn = document.getElementById('chatToggleBtn');
+  const chatCloseBtn = document.getElementById('chatCloseBtn');
+  const chatBox = document.getElementById('chatBox');
+  const chatInput = document.getElementById('chatInput');
+  const chatSendBtn = document.getElementById('chatSendBtn');
+  const chatBody = document.getElementById('chatBody');
+
+  if (!chatToggleBtn || !chatBox) return;
+
+  chatToggleBtn.addEventListener('click', () => {
+    chatBox.classList.add('active');
+  });
+
+  chatCloseBtn.addEventListener('click', () => {
+    chatBox.classList.remove('active');
+  });
+
+  function addMessage(msg, type) {
+    const div = document.createElement('div');
+    div.className = `chat-msg ${type}-msg`;
+    div.textContent = msg;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  async function handleSend() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    
+    addMessage(text, 'user');
+    chatInput.value = '';
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await res.json();
+      if (data.reply) {
+        addMessage(data.reply, 'bot');
+      } else {
+        addMessage("Sorry, I encountered an error connecting to the server.", 'bot');
+      }
+    } catch (e) {
+      console.error(e);
+      addMessage("Sorry, I couldn't reach the backend API.", 'bot');
+    }
+  }
+
+  chatSendBtn.addEventListener('click', handleSend);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSend();
+  });
+});
