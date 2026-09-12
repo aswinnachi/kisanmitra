@@ -1,0 +1,18 @@
+# Environment Variables
+.env
+
+# Local Database / State
+mandi_records.json
+
+# Mac OS Files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
