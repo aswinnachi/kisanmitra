@@ -1,6 +1,5 @@
-// =========================================================
-// ===== KisanMitra — Multi-Language Smart Mandi Engine =====
-// =========================================================
+// Server API Base URL (empty string when hosted directly on Render or localhost, or set to Render URL if hosted on GitHub Pages)
+const API_BASE = window.API_BASE_URL || '';
 
 // --- AUDIO CHIME SYNTHESIZER (Web Audio API) ---
 function playMandiChime() {
@@ -1410,7 +1409,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let foundMandi = null;
 
     try {
-      const res = await fetch(`/api/track?token=${encodeURIComponent(fullToken)}`);
+      const res = await fetch(`${API_BASE}/api/track?token=${encodeURIComponent(fullToken)}`);
       if (res.ok) {
         const data = await res.json();
         if (data.found && data.record) {
@@ -1726,7 +1725,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const regPayload = { name, phone, email, aadhaar, mandi, crop };
 
       try {
-        await fetch('/api/register', {
+        await fetch(`${API_BASE}/api/register`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(regPayload)
@@ -2094,7 +2093,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Multi-client persistent sync via Backend API
       try {
-        const res = await fetch('/api/book-slot', {
+        const res = await fetch(`${API_BASE}/api/book-slot`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -2217,7 +2216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tokenStr = e.currentTarget.getAttribute('data-token');
         const item = mandi.queue.find(q => q.token === tokenStr);
         try {
-          await fetch('/api/call-farmer', {
+          await fetch(`${API_BASE}/api/call-farmer`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: tokenStr, mandiId: currentAdminMandiId })
@@ -2238,7 +2237,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.addEventListener('click', async (e) => {
         const tokenStr = e.currentTarget.getAttribute('data-token');
         try {
-          const res = await fetch('/api/advance-stage', {
+          const res = await fetch(`${API_BASE}/api/advance-stage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token: tokenStr, mandiId: currentAdminMandiId })
@@ -2438,7 +2437,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function pollServerQueue() {
     if (!document.getElementById('adminMainSuite') || document.getElementById('adminMainSuite').style.display === 'none') return;
     try {
-      const res = await fetch(`/api/queue?mandiId=${encodeURIComponent(currentAdminMandiId)}`);
+      const res = await fetch(`${API_BASE}/api/queue?mandiId=${encodeURIComponent(currentAdminMandiId)}`);
       if (res.ok) {
         const data = await res.json();
         if (data.queue) {
@@ -2668,7 +2667,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-        const res = await fetch('/api/certify-weighment', {
+        const res = await fetch(`${API_BASE}/api/certify-weighment`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
@@ -2740,7 +2739,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let email = null;
     try {
-      const res = await fetch(`/api/email?token=${encodeURIComponent(token)}`);
+      const res = await fetch(`${API_BASE}/api/email?token=${encodeURIComponent(token)}`);
       if (res.ok) {
         const data = await res.json();
         email = data.email;
@@ -2944,7 +2943,7 @@ document.addEventListener('DOMContentLoaded', () => {
     chatInput.value = '';
 
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch(`${API_BASE}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text })
