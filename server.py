@@ -24,8 +24,8 @@ PORT = int(os.environ.get("PORT", 8080))
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mandi_records.json')
 
 # Real Gmail Configuration for APMC Notifications
-GMAIL_SENDER = os.getenv("GMAIL_SENDER_EMAIL", "aswinnchi810@gmail.com")
-GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASSWORD", "28_01_2007")
+GMAIL_SENDER = os.getenv("GMAIL_SENDER_EMAIL", "aswinnachi810@gmail.com")
+GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASSWORD", "moyzpuaqruhoeteb")
 
 def dispatch_gmail_via_smtp(to_email, subject, body_html, body_text=""):
     target = to_email if to_email and '@' in to_email else GMAIL_SENDER
@@ -295,18 +295,15 @@ class KisanMitraHandler(SimpleHTTPRequestHandler):
                 import urllib.request
                 import urllib.error
                 
-                system_instruction = "You are KisanBot, an AI assistant for the KisanMitra platform. You help Indian farmers with booking APMC Mandi procurement slots, checking queues, understanding MSP, and DBT payments. Be concise, respectful, and helpful. Use simple language."
+                prompt_text = f"You are KisanBot, an AI assistant for the KisanMitra platform. Help Indian farmers with APMC Mandi prices, MSP rates, slot booking, and crop information. Answer concisely, accurately, and respectfully in simple language.\n\nUser Question: {user_message}"
                 
                 req_data = {
                     "contents": [{
-                        "parts": [{"text": user_message}]
+                        "parts": [{"text": prompt_text}]
                     }],
-                    "systemInstruction": {
-                        "parts": [{"text": system_instruction}]
-                    },
                     "generationConfig": {
-                        "temperature": 0.5,
-                        "maxOutputTokens": 200
+                        "temperature": 0.7,
+                        "maxOutputTokens": 500
                     }
                 }
                 
