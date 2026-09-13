@@ -39,14 +39,39 @@ def dispatch_gmail_via_smtp(to_email, subject, body_html, body_text=""):
             msg.attach(MIMEText(body_text, 'plain', 'utf-8'))
         msg.attach(MIMEText(body_html, 'html', 'utf-8'))
 
-        with smtplib.SMTP('smtp.gmail.com', 587, timeout=4) as server:
-            server.ehlo()
-            server.starttls()
-            server.ehlo()
-            server.login(GMAIL_SENDER, GMAIL_APP_PASS)
-            server.sendmail(GMAIL_SENDER, [target, GMAIL_SENDER], msg.as_string())
-        print(f"📧 [SMTP SUCCESS] Real Gmail sent to {target}")
-        return True, "Delivered to Gmail Inbox"
+        sent = False
+        last_err = None
+
+        # Try TLS on port 587 first
+        try:
+            with smtplib.SMTP('smtp.gmail.com', 587, timeout=15) as server:
+                server.ehlo()
+                server.starttls()
+                server.ehlo()
+                server.login(GMAIL_SENDER, GMAIL_APP_PASS)
+                server.sendmail(GMAIL_SENDER, [target, GMAIL_SENDER], msg.as_string())
+            sent = True
+        except Exception as tls_err:
+            print(f"📧 [SMTP TLS 587] Failed: {tls_err}")
+            last_err = tls_err
+
+        # Fallback: SSL on port 465
+        if not sent:
+            try:
+                with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=15) as server:
+                    server.login(GMAIL_SENDER, GMAIL_APP_PASS)
+                    server.sendmail(GMAIL_SENDER, [target, GMAIL_SENDER], msg.as_string())
+                sent = True
+            except Exception as ssl_err:
+                print(f"📧 [SMTP SSL 465] Failed: {ssl_err}")
+                last_err = ssl_err
+
+        if sent:
+            print(f"📧 [SMTP SUCCESS] Real Gmail sent to {target}")
+            return True, "Delivered to Gmail Inbox"
+        else:
+            print(f"📧 [SMTP Notice] Both TLS and SSL failed. Last error: {last_err}")
+            return False, str(last_err)
     except smtplib.SMTPAuthenticationError as auth_err:
         print(f"📧 [SMTP AUTH FAILED] Please check your GMAIL_APP_PASSWORD in .env. It must be a 16-character App Password, not your regular password.")
         print(f"   Original error: {auth_err}")
@@ -279,7 +304,7 @@ class KisanMitraHandler(SimpleHTTPRequestHandler):
         except Exception:
             payload = {}
 
-        # API: Chatbot using Gemini
+        # API: Chatbot using Gemini (with multi-turn conversation history)
         if path == '/api/chat':
             user_message = payload.get('message', '').strip()
             if not user_message:
@@ -294,13 +319,34 @@ class KisanMitraHandler(SimpleHTTPRequestHandler):
             try:
                 import urllib.request
                 import urllib.error
-                
-                prompt_text = f"You are KisanBot, an AI assistant for the KisanMitra platform. Help Indian farmers with APMC Mandi prices, MSP rates, slot booking, and crop information. Answer concisely, accurately, and respectfully in simple language.\n\nUser Question: {user_message}"
-                
+
+                # Build multi-turn conversation contents
+                system_instruction = "You are KisanBot, a friendly AI assistant for the KisanMitra APMC Mandi platform. Help Indian farmers with APMC Mandi prices, MSP rates, slot booking, crop information, and procurement procedures. Answer concisely, accurately, and respectfully in simple language. If the farmer speaks in Hindi or Tamil, respond in that language."
+
+                contents = []
+
+                # Add conversation history if provided by client
+                history = payload.get('history', [])
+                for turn in history:
+                    role = turn.get('role', 'user')
+                    text = turn.get('text', '').strip()
+                    if text and role in ('user', 'model'):
+                        contents.append({
+                            "role": role,
+                            "parts": [{"text": text}]
+                        })
+
+                # Add the current user message
+                contents.append({
+                    "role": "user",
+                    "parts": [{"text": user_message}]
+                })
+
                 req_data = {
-                    "contents": [{
-                        "parts": [{"text": prompt_text}]
-                    }],
+                    "system_instruction": {
+                        "parts": [{"text": system_instruction}]
+                    },
+                    "contents": contents,
                     "generationConfig": {
                         "temperature": 0.7,
                         "maxOutputTokens": 500
@@ -308,13 +354,13 @@ class KisanMitraHandler(SimpleHTTPRequestHandler):
                 }
                 
                 reply = None
-                models_to_try = ['gemini-3.6-flash', 'gemini-2.5-pro', 'gemini-3.5-flash', 'gemini-3.1-flash-lite', 'gemini-flash-latest']
+                models_to_try = ['gemini-3.6-flash', 'gemini-2.5-flash', 'gemini-2.5-pro']
                 
                 for m in models_to_try:
                     url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent?key={gemini_api_key}"
                     try:
                         req = urllib.request.Request(url, data=json.dumps(req_data).encode('utf-8'), headers={'Content-Type': 'application/json'})
-                        with urllib.request.urlopen(req, timeout=10) as response:
+                        with urllib.request.urlopen(req, timeout=20) as response:
                             res_body = response.read().decode('utf-8')
                             res_json = json.loads(res_body)
                             reply = res_json.get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text')

@@ -2919,8 +2919,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!chatToggleBtn || !chatBox) return;
 
+  // Conversation history array — persists across open/close of chat box
+  const chatHistory = [];
+
   chatToggleBtn.addEventListener('click', () => {
     chatBox.classList.add('active');
+    if (chatInput) chatInput.focus();
   });
 
   chatCloseBtn.addEventListener('click', () => {
@@ -2930,33 +2934,75 @@ document.addEventListener('DOMContentLoaded', () => {
   function addMessage(msg, type) {
     const div = document.createElement('div');
     div.className = `chat-msg ${type}-msg`;
-    div.textContent = msg;
+    if (type === 'bot') {
+      // Simple markdown-like rendering for bot responses
+      div.innerHTML = msg
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/\n/g, '<br>');
+    } else {
+      div.textContent = msg;
+    }
     chatBody.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
+    return div;
+  }
+
+  function showTypingIndicator() {
+    const div = document.createElement('div');
+    div.className = 'chat-msg bot-msg typing-indicator';
+    div.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
+    div.id = 'chatTypingIndicator';
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return div;
+  }
+
+  function removeTypingIndicator() {
+    const el = document.getElementById('chatTypingIndicator');
+    if (el) el.remove();
   }
 
   async function handleSend() {
     const text = chatInput.value.trim();
     if (!text) return;
     
+    // Show user message immediately
     addMessage(text, 'user');
     chatInput.value = '';
+    chatInput.focus();
+
+    // Show typing indicator
+    showTypingIndicator();
 
     try {
       const res = await fetch(`${API_BASE}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({
+          message: text,
+          history: chatHistory
+        })
       });
       const data = await res.json();
+      removeTypingIndicator();
+
       if (data.reply) {
         addMessage(data.reply, 'bot');
+        // Store turn in conversation history for context
+        chatHistory.push({ role: 'user', text: text });
+        chatHistory.push({ role: 'model', text: data.reply });
+        // Keep history manageable (last 20 turns = 10 exchanges)
+        while (chatHistory.length > 20) {
+          chatHistory.shift();
+        }
       } else {
-        addMessage("Sorry, I encountered an error connecting to the server.", 'bot');
+        addMessage("Sorry, I encountered an error. Please try again.", 'bot');
       }
     } catch (e) {
-      console.error(e);
-      addMessage("Sorry, I couldn't reach the backend API.", 'bot');
+      console.error('Chat API error:', e);
+      removeTypingIndicator();
+      addMessage("Sorry, I couldn't reach the server. Please check your connection and try again.", 'bot');
     }
   }
 
