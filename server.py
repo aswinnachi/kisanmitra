@@ -23,62 +23,226 @@ except ImportError:
 PORT = int(os.environ.get("PORT", 8080))
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'mandi_records.json')
 
-# Real Gmail Configuration for APMC Notifications
+import base64
+import urllib.error
+import urllib.parse
+import urllib.request
+
+# Real Email Configuration for APMC Notifications
 GMAIL_SENDER = os.getenv("GMAIL_SENDER_EMAIL", "aswinnachi810@gmail.com")
 GMAIL_APP_PASS = os.getenv("GMAIL_APP_PASSWORD", "moyzpuaqruhoeteb")
+BREVO_API_KEY = os.getenv("BREVO_API_KEY") or os.getenv("SENDINBLUE_API_KEY")
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+RESEND_SENDER = os.getenv("RESEND_SENDER_EMAIL", "KisanMitra APMC <onboarding@resend.dev>")
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
+MAILGUN_DOMAIN = os.getenv("MAILGUN_DOMAIN")
 
-def dispatch_gmail_via_smtp(to_email, subject, body_html, body_text=""):
-    target = to_email if to_email and '@' in to_email else GMAIL_SENDER
+def send_email_via_brevo(api_key, sender_email, to_email, subject, body_html, body_text=""):
+    """Sends email via Brevo (formerly Sendinblue) HTTP REST API (300 emails/day free tier)."""
+    url = "https://api.brevo.com/v3/smtp/email"
+    headers = {
+        "accept": "application/json",
+        "api-key": api_key,
+        "content-type": "application/json"
+    }
+    payload = {
+        "sender": {
+            "name": "KisanMitra APMC Dispatch",
+            "email": sender_email
+        },
+        "to": [{"email": to_email}],
+        "subject": subject,
+        "htmlContent": body_html
+    }
+    if body_text:
+        payload["textContent"] = body_text
+
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        resp_body = resp.read().decode("utf-8")
+        resp_data = json.loads(resp_body) if resp_body else {}
+        msg_id = resp_data.get("messageId", "sent")
+        return True, f"Brevo HTTP (ID: {msg_id})"
+
+def send_email_via_resend(api_key, sender, to_email, subject, body_html, body_text=""):
+    """Sends email via Resend HTTP REST API (100 emails/day free tier)."""
+    url = "https://api.resend.com/emails"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "from": sender,
+        "to": [to_email],
+        "subject": subject,
+        "html": body_html
+    }
+    if body_text:
+        payload["text"] = body_text
+
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        resp_body = resp.read().decode("utf-8")
+        resp_data = json.loads(resp_body) if resp_body else {}
+        return True, f"Resend HTTP (ID: {resp_data.get('id', 'sent')})"
+
+def send_email_via_sendgrid(api_key, sender_email, to_email, subject, body_html, body_text=""):
+    """Sends email via SendGrid v3 HTTP REST API."""
+    url = "https://api.sendgrid.com/v3/mail/send"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "personalizations": [{"to": [{"email": to_email}]}],
+        "from": {"email": sender_email, "name": "KisanMitra APMC Dispatch"},
+        "subject": subject,
+        "content": [{"type": "text/html", "value": body_html}]
+    }
+    if body_text:
+        payload["content"].append({"type": "text/plain", "value": body_text})
+
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        return True, "SendGrid HTTP (202 Accepted)"
+
+def send_email_via_mailgun(api_key, domain, sender_email, to_email, subject, body_html, body_text=""):
+    """Sends email via Mailgun HTTP REST API."""
+    url = f"https://api.mailgun.net/v3/{domain}/messages"
+    auth_header = "Basic " + base64.b64encode(f"api:{api_key}".encode("utf-8")).decode("utf-8")
+    headers = {
+        "Authorization": auth_header,
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    post_data = {
+        "from": f"KisanMitra APMC <postmaster@{domain}>",
+        "to": to_email,
+        "subject": subject,
+        "html": body_html,
+        "text": body_text or "APMC Mandi Notification"
+    }
+    data = urllib.parse.urlencode(post_data).encode("utf-8")
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        return True, "Mailgun HTTP"
+
+def send_email_via_smtp(sender_email, sender_pass, to_email, subject, body_html, body_text=""):
+    """Direct SMTP sender (fallback for local development or unblocked hosting)."""
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = subject
+    msg['From'] = f"KisanMitra APMC Dispatch <{sender_email}>"
+    msg['To'] = to_email
+    msg['Reply-To'] = sender_email
+    if body_text:
+        msg.attach(MIMEText(body_text, 'plain', 'utf-8'))
+    msg.attach(MIMEText(body_html, 'html', 'utf-8'))
+
+    # Try TLS 587
     try:
-        msg = MIMEMultipart('alternative')
-        msg['Subject'] = subject
-        msg['From'] = f"KisanMitra APMC Dispatch <{GMAIL_SENDER}>"
-        msg['To'] = target
-        msg['Reply-To'] = GMAIL_SENDER
-        if body_text:
-            msg.attach(MIMEText(body_text, 'plain', 'utf-8'))
-        msg.attach(MIMEText(body_html, 'html', 'utf-8'))
+        with smtplib.SMTP('smtp.gmail.com', 587, timeout=10) as server:
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(sender_email, sender_pass)
+            server.sendmail(sender_email, [to_email, sender_email], msg.as_string())
+        return True, "Gmail SMTP (Port 587 TLS)"
+    except Exception as tls_err:
+        print(f"📧 [SMTP TLS 587] {tls_err}")
 
-        sent = False
-        last_err = None
+    # Fallback SSL 465
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10) as server:
+            server.login(sender_email, sender_pass)
+            server.sendmail(sender_email, [to_email, sender_email], msg.as_string())
+        return True, "Gmail SMTP (Port 465 SSL)"
+    except Exception as ssl_err:
+        print(f"📧 [SMTP SSL 465] {ssl_err}")
+        raise ssl_err
 
-        # Try TLS on port 587 first
+def dispatch_email(to_email, subject, body_html, body_text=""):
+    """
+    Dispatches email using the best available provider:
+    1. Brevo HTTP API (if BREVO_API_KEY is configured) - Recommended for Render (300 free/day)
+    2. Resend HTTP API (if RESEND_API_KEY is configured)
+    3. SendGrid HTTP API (if SENDGRID_API_KEY is configured)
+    4. Mailgun HTTP API (if MAILGUN_API_KEY is configured)
+    5. Direct Gmail SMTP (TLS 587 / SSL 465 fallback)
+    """
+    target = to_email if to_email and '@' in to_email else GMAIL_SENDER
+    brevo_key = os.getenv("BREVO_API_KEY") or os.getenv("SENDINBLUE_API_KEY")
+    resend_key = os.getenv("RESEND_API_KEY")
+    sendgrid_key = os.getenv("SENDGRID_API_KEY")
+    mailgun_key = os.getenv("MAILGUN_API_KEY")
+    mailgun_domain = os.getenv("MAILGUN_DOMAIN")
+
+    # 1. Try Brevo HTTP API (HTTP port 443 - works everywhere including Render)
+    if brevo_key:
         try:
-            with smtplib.SMTP('smtp.gmail.com', 587, timeout=15) as server:
-                server.ehlo()
-                server.starttls()
-                server.ehlo()
-                server.login(GMAIL_SENDER, GMAIL_APP_PASS)
-                server.sendmail(GMAIL_SENDER, [target, GMAIL_SENDER], msg.as_string())
-            sent = True
-        except Exception as tls_err:
-            print(f"📧 [SMTP TLS 587] Failed: {tls_err}")
-            last_err = tls_err
+            success, msg = send_email_via_brevo(brevo_key, GMAIL_SENDER, target, subject, body_html, body_text)
+            print(f"📧 [EMAIL SUCCESS] {msg} -> {target}")
+            return True, f"Delivered via {msg}"
+        except urllib.error.HTTPError as he:
+            err_details = he.read().decode('utf-8', errors='ignore')
+            print(f"📧 [Brevo HTTP Error {he.code}] {err_details}")
+        except Exception as e:
+            print(f"📧 [Brevo Error] {e}")
 
-        # Fallback: SSL on port 465
-        if not sent:
-            try:
-                with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=15) as server:
-                    server.login(GMAIL_SENDER, GMAIL_APP_PASS)
-                    server.sendmail(GMAIL_SENDER, [target, GMAIL_SENDER], msg.as_string())
-                sent = True
-            except Exception as ssl_err:
-                print(f"📧 [SMTP SSL 465] Failed: {ssl_err}")
-                last_err = ssl_err
+    # 2. Try Resend HTTP API
+    if resend_key:
+        try:
+            sender = os.getenv("RESEND_SENDER_EMAIL", "KisanMitra APMC <onboarding@resend.dev>")
+            success, msg = send_email_via_resend(resend_key, sender, target, subject, body_html, body_text)
+            print(f"📧 [EMAIL SUCCESS] {msg} -> {target}")
+            return True, f"Delivered via {msg}"
+        except urllib.error.HTTPError as he:
+            err_details = he.read().decode('utf-8', errors='ignore')
+            print(f"📧 [Resend HTTP Error {he.code}] {err_details}")
+        except Exception as e:
+            print(f"📧 [Resend Error] {e}")
 
-        if sent:
-            print(f"📧 [SMTP SUCCESS] Real Gmail sent to {target}")
-            return True, "Delivered to Gmail Inbox"
-        else:
-            print(f"📧 [SMTP Notice] Both TLS and SSL failed. Last error: {last_err}")
-            return False, str(last_err)
-    except smtplib.SMTPAuthenticationError as auth_err:
-        print(f"📧 [SMTP AUTH FAILED] Please check your GMAIL_APP_PASSWORD in .env. It must be a 16-character App Password, not your regular password.")
-        print(f"   Original error: {auth_err}")
-        return False, f"Auth Error: {auth_err}"
-    except Exception as err:
-        print(f"📧 [SMTP Notice] Relay: {err}. Intimation saved to web digital outbox.")
-        return False, str(err)
+    # 3. Try SendGrid HTTP API
+    if sendgrid_key:
+        try:
+            success, msg = send_email_via_sendgrid(sendgrid_key, GMAIL_SENDER, target, subject, body_html, body_text)
+            print(f"📧 [EMAIL SUCCESS] {msg} -> {target}")
+            return True, f"Delivered via {msg}"
+        except urllib.error.HTTPError as he:
+            err_details = he.read().decode('utf-8', errors='ignore')
+            print(f"📧 [SendGrid HTTP Error {he.code}] {err_details}")
+        except Exception as e:
+            print(f"📧 [SendGrid Error] {e}")
+
+    # 4. Try Mailgun HTTP API
+    if mailgun_key and mailgun_domain:
+        try:
+            success, msg = send_email_via_mailgun(mailgun_key, mailgun_domain, GMAIL_SENDER, target, subject, body_html, body_text)
+            print(f"📧 [EMAIL SUCCESS] {msg} -> {target}")
+            return True, f"Delivered via {msg}"
+        except Exception as e:
+            print(f"📧 [Mailgun Error] {e}")
+
+    # 5. Direct Gmail SMTP fallback (Works locally; blocked on Render free tier)
+    if GMAIL_SENDER and GMAIL_APP_PASS:
+        try:
+            success, msg = send_email_via_smtp(GMAIL_SENDER, GMAIL_APP_PASS, target, subject, body_html, body_text)
+            print(f"📧 [EMAIL SUCCESS] {msg} -> {target}")
+            return True, f"Delivered via {msg}"
+        except Exception as e:
+            err_str = str(e)
+            print(f"📧 [SMTP Failed] {err_str}")
+            if "Network is unreachable" in err_str or "101" in err_str or "timed out" in err_str:
+                print("⚠️ [RENDER NOTICE] Render free tier blocks outbound SMTP ports 587/465.")
+                print("   👉 Set BREVO_API_KEY in Render Environment Variables for free 300 emails/day.")
+            return False, f"SMTP Error: {err_str}"
+
+    return False, "No email service configured. Please set BREVO_API_KEY in environment."
+
+# Backward compatibility alias
+dispatch_gmail_via_smtp = dispatch_email
 
 
 # Initial seed queue records for demo APMC mandis
@@ -290,8 +454,60 @@ class KisanMitraHandler(SimpleHTTPRequestHandler):
                 self.send_json(404, {'success': False, 'message': 'No email intimation found for this token yet.'})
             return
 
+        # API: Test Email Delivery (GET /api/test-email?to=user@example.com)
+        if path == '/api/test-email':
+            to_addr = query.get('to', [GMAIL_SENDER])[0]
+            self.handle_test_email(to_addr)
+            return
+
         # Serve static files as fallback
         super().do_GET()
+
+    def handle_test_email(self, target_email):
+        test_to = target_email if target_email and '@' in target_email else GMAIL_SENDER
+        test_subject = "🌾 KisanMitra APMC — Live Email Dispatch Test"
+        test_html = f"""
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #16a34a; border-radius: 8px; background: #ffffff;">
+            <div style="background: #16a34a; color: #ffffff; padding: 16px; border-radius: 6px; text-align: center;">
+                <h2 style="margin: 0;">🌾 KisanMitra APMC Procurement</h2>
+                <p style="margin: 4px 0 0 0; opacity: 0.9;">Official Email Intimation System</p>
+            </div>
+            <div style="padding: 20px 0;">
+                <h3 style="color: #15803d; margin-top: 0;">✅ Email Delivery Test Successful!</h3>
+                <p style="color: #334155; line-height: 1.6;">This is an automated test verifying that real-time email intimation is functioning for your KisanMitra deployment.</p>
+                <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px 16px; margin: 16px 0; border-radius: 0 4px 4px 0;">
+                    <p style="margin: 4px 0; color: #166534;"><strong>Recipient:</strong> {test_to}</p>
+                    <p style="margin: 4px 0; color: #166534;"><strong>Status:</strong> Active & Connected</p>
+                    <p style="margin: 4px 0; color: #166534;"><strong>Platform:</strong> KisanMitra Smart Farmer Mandi Platform</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 0.8rem; color: #94a3b8; text-align: center;">
+                Government APMC Regulated Markets • KisanMitra Smart Procurement
+            </div>
+        </div>
+        """
+        test_text = f"KisanMitra APMC Email Test delivered successfully to {test_to}!"
+        ok, info = dispatch_email(test_to, test_subject, test_html, test_text)
+
+        brevo_key = os.getenv("BREVO_API_KEY") or os.getenv("SENDINBLUE_API_KEY")
+        resend_key = os.getenv("RESEND_API_KEY")
+        sendgrid_key = os.getenv("SENDGRID_API_KEY")
+        mailgun_key = os.getenv("MAILGUN_API_KEY")
+        smtp_pass = os.getenv("GMAIL_APP_PASSWORD")
+
+        self.send_json(200 if ok else 500, {
+            'success': ok,
+            'info': info,
+            'recipient': test_to,
+            'configuredProviders': {
+                'brevo': bool(brevo_key),
+                'resend': bool(resend_key),
+                'sendgrid': bool(sendgrid_key),
+                'mailgun': bool(mailgun_key),
+                'gmail_smtp': bool(smtp_pass)
+            },
+            'note': 'To enable HTTP email delivery on Render, add BREVO_API_KEY in Render Environment Variables (free at brevo.com).' if not (brevo_key or resend_key or sendgrid_key or mailgun_key) else 'HTTP email API is active.'
+        })
 
     def do_POST(self):
         parsed = urlparse(self.path)
@@ -303,6 +519,12 @@ class KisanMitraHandler(SimpleHTTPRequestHandler):
             payload = json.loads(post_body)
         except Exception:
             payload = {}
+
+        # API: Test Email Delivery (POST /api/test-email)
+        if path == '/api/test-email':
+            to_addr = payload.get('to') or payload.get('email') or GMAIL_SENDER
+            self.handle_test_email(to_addr)
+            return
 
         # API: Chatbot using Gemini (with multi-turn conversation history)
         if path == '/api/chat':
