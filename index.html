@@ -1227,20 +1227,26 @@
 
   <!-- ===== AI CHATBOT ===== -->
   <div class="chat-widget" id="chatWidget">
-    <div class="chat-toggle" id="chatToggleBtn">
-      <span class="chat-icon">💬</span>
+    <div class="chat-toggle" id="chatToggleBtn" title="Chat with KisanBot AI" aria-label="Toggle KisanBot AI Assistant">
+      <span class="chat-icon" id="chatToggleIcon">💬</span>
     </div>
-    <div class="chat-box" id="chatBox">
+    <div class="chat-box" id="chatBox" role="dialog" aria-label="KisanBot AI Assistant">
       <div class="chat-header">
-        <h4>🌾 KisanBot (AI Help)</h4>
-        <button id="chatCloseBtn">&times;</button>
+        <div class="chat-header-info">
+          <span class="chat-bot-avatar">🌾</span>
+          <div>
+            <h4>KisanBot</h4>
+            <span class="chat-status-dot">● Online (AI Help)</span>
+          </div>
+        </div>
+        <button id="chatCloseBtn" class="chat-close-btn" title="Close Chat (Esc)" aria-label="Close Chat">✕</button>
       </div>
       <div class="chat-body" id="chatBody">
-        <div class="chat-msg bot-msg">Namaste! How can I help you today? Do you need help booking a slot?</div>
+        <div class="chat-msg bot-msg">Namaste! I am KisanBot 🌾. How can I help you today? Do you need help checking mandi prices, MSP rates, or booking a procurement slot?</div>
       </div>
       <div class="chat-input-area">
-        <input type="text" id="chatInput" placeholder="Type a message..." />
-        <button id="chatSendBtn">➤</button>
+        <input type="text" id="chatInput" placeholder="Type message in English / हिंदी / தமிழ்..." autocomplete="off" />
+        <button id="chatSendBtn" title="Send Message" aria-label="Send Message">➤</button>
       </div>
     </div>
   </div>

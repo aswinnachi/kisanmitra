@@ -2911,8 +2911,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const chatToggleBtn = document.getElementById('chatToggleBtn');
+  const chatToggleIcon = document.getElementById('chatToggleIcon');
   const chatCloseBtn = document.getElementById('chatCloseBtn');
   const chatBox = document.getElementById('chatBox');
+  const chatWidget = document.getElementById('chatWidget');
   const chatInput = document.getElementById('chatInput');
   const chatSendBtn = document.getElementById('chatSendBtn');
   const chatBody = document.getElementById('chatBody');
@@ -2922,13 +2924,51 @@ document.addEventListener('DOMContentLoaded', () => {
   // Conversation history array — persists across open/close of chat box
   const chatHistory = [];
 
-  chatToggleBtn.addEventListener('click', () => {
+  function openChat() {
     chatBox.classList.add('active');
-    if (chatInput) chatInput.focus();
+    if (chatToggleIcon) chatToggleIcon.textContent = '✕';
+    if (chatInput) setTimeout(() => chatInput.focus(), 150);
+  }
+
+  function closeChat() {
+    chatBox.classList.remove('active');
+    if (chatToggleIcon) chatToggleIcon.textContent = '💬';
+  }
+
+  function toggleChat() {
+    if (chatBox.classList.contains('active')) {
+      closeChat();
+    } else {
+      openChat();
+    }
+  }
+
+  chatToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleChat();
   });
 
-  chatCloseBtn.addEventListener('click', () => {
-    chatBox.classList.remove('active');
+  if (chatCloseBtn) {
+    chatCloseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeChat();
+    });
+  }
+
+  // Close when pressing Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && chatBox.classList.contains('active')) {
+      closeChat();
+    }
+  });
+
+  // Close when clicking outside chat widget
+  document.addEventListener('click', (e) => {
+    if (chatBox.classList.contains('active')) {
+      if (chatWidget && !chatWidget.contains(e.target)) {
+        closeChat();
+      }
+    }
   });
 
   function addMessage(msg, type) {
