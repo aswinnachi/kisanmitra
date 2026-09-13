@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KisanMitra — Smart Farmer Procurement Platform</title>
+  <title>KisanMitra — National APMC Mandi Procurement Portal</title>
   <meta name="description" content="KisanMitra digitizes the mandi procurement process with slot booking, real-time queue management, and transparent payment tracking for Indian farmers." />
-  <meta name="theme-color" content="#1b4332" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>" />
+  <meta name="theme-color" content="#166534" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23166534%22 stroke-width=%222%22><path d=%22M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z%22/><path d=%22M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4%22/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -18,18 +18,22 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#" class="nav-logo">
-        <span class="logo-icon">🌾</span>
+        <span class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+        </span>
         <span class="logo-text">Kisan<span class="logo-accent">Mitra</span></span>
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#mandi-locator" data-i18n="nav_find_mandi">📍 Find Mandi</a></li>
-        <li><a href="#mandi-directory" data-i18n="nav_directory">🏛️ State Directory</a></li>
+        <li><a href="#mandi-locator" data-i18n="nav_find_mandi">Find Mandi</a></li>
+        <li><a href="#mandi-directory" data-i18n="nav_directory">State Directory</a></li>
         <li><a href="#how-it-works" data-i18n="nav_how_it_works">How It Works</a></li>
       </ul>
       <div class="nav-actions">
         <!-- Global Language Selector in Navbar -->
         <div class="lang-selector-wrap">
-          <span class="lang-icon">🌐</span>
+          <span class="lang-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
           <select id="globalLangSelect" class="lang-dropdown" aria-label="Select Language">
             <option value="en" selected>English</option>
             <option value="ta">தமிழ் (Tamil)</option>
@@ -39,10 +43,10 @@
         <!-- Dynamic Login / Session Area -->
         <div id="navAuthArea" style="display: flex; gap: 8px; align-items: center;">
           <button class="btn btn-outline" id="navRegisterBtn" style="padding: 7px 14px; font-weight: 600; font-size: 0.85rem; border: 1.5px solid var(--primary); color: var(--primary);">
-            📝 Register
+            Register
           </button>
           <button class="btn btn-gold" id="navLoginBtn" style="padding: 7px 16px; font-weight: 600; font-size: 0.85rem;">
-            🔑 Login
+            Login
           </button>
         </div>
       </div>
@@ -87,13 +91,13 @@
         <div class="hero-cta">
           <a href="book-slot.html" class="btn btn-gold btn-lg" id="heroBookSlotBtn">
             <span data-i18n="btn_book_slot">Book Procurement Slot</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#mandi-directory" class="btn btn-ghost btn-lg">
-            <span data-i18n="btn_view_directory">🏛️ Browse State Mandis</span>
+            <span data-i18n="btn_view_directory">Browse State Mandis</span>
           </a>
           <a href="admin.html" class="btn btn-outline-light btn-lg">
-            <span data-i18n="btn_admin_portal">⚙️ Mandi Admin Portal</span>
+            <span data-i18n="btn_admin_portal">Mandi Admin Portal</span>
           </a>
         </div>
       </div>
@@ -102,11 +106,11 @@
           <div class="phone-notch"></div>
           <div class="phone-screen">
             <div class="phone-header">
-              <span class="phone-greeting" data-i18n="phone_greeting">Namaste, Ramesh 🙏</span>
+              <span class="phone-greeting" data-i18n="phone_greeting">Namaste, Ramesh Patil</span>
               <span class="phone-date" data-i18n="phone_today">Today</span>
             </div>
             <div class="phone-card active-card">
-              <div class="card-status status-active" data-i18n="card_active_slot">● Active Slot</div>
+              <div class="card-status status-active" data-i18n="card_active_slot">Active Slot</div>
               <div class="card-center" id="heroPhoneMandi">Mandi — Pollachi Regulated Market</div>
               <div class="card-time">Today, 10:30 AM</div>
               <div class="card-token">Token: <strong>#KM-2048</strong></div>
@@ -118,7 +122,7 @@
               </div>
             </div>
             <div class="phone-card">
-              <div class="card-status status-done" data-i18n="card_completed_paid">✓ Completed &amp; Paid</div>
+              <div class="card-status status-done" data-i18n="card_completed_paid">Completed &amp; Paid</div>
               <div class="card-center">Mandi — Erode Regulated Market</div>
               <div class="card-time">Yesterday, 2:00 PM</div>
               <div class="card-payment">₹48,250 <span class="paid-badge" data-i18n="paid_badge">Transferred via DBT</span></div>
@@ -147,16 +151,18 @@
           <div class="pincode-input-group">
             <label for="pincodeInput">Enter Pincode</label>
             <div class="input-with-icon">
-              <span class="icon">📮</span>
+              <span class="icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
               <input type="text" id="pincodeInput" placeholder="e.g. 422001, 411037, 141001..." maxlength="6" />
             </div>
           </div>
           <div class="pincode-actions">
             <button class="btn btn-primary" id="searchPincodeBtn">
-              <span>🔍 Search Mandis</span>
+              <span>Search Mandis</span>
             </button>
             <button class="btn btn-outline" id="detectLocationBtn">
-              <span>🎯 Auto Detect Location</span>
+              <span>Auto Detect Location</span>
             </button>
           </div>
         </div>
@@ -177,7 +183,7 @@
       <!-- Pincode Search Results -->
       <div class="pincode-results-header" id="pincodeResultsHeader">
         <h3>Mandis Near Pincode <span class="highlight-pin" id="searchedPinDisplay">422001</span> (<span id="pincodeResultCount">3</span> Mandis Found)</h3>
-        <span class="badge-tag green">✓ Live Distance Calculated</span>
+        <span class="badge-tag green">Live Distance Calculated</span>
       </div>
 
       <div class="mandi-cards-grid" id="pincodeMandiGrid">
@@ -245,7 +251,9 @@
           <div class="filter-group search-name-group">
             <label for="mandiSearchName">Search Mandi Name</label>
             <div class="input-with-icon">
-              <span class="icon">🔍</span>
+              <span class="icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
               <input type="text" id="mandiSearchName" placeholder="Type Mandi / APMC name..." />
             </div>
           </div>
@@ -286,9 +294,11 @@
           <button class="btn btn-primary btn-lg" id="trackTokenBtn">Track Live Position</button>
         </div>
 
-        <!-- Error Alert when token is not in records (Strict Validation - No fake IDs) -->
-        <div class="tracker-error-box" id="tokenTrackerError" style="display: none; margin-top: 20px; background: #fef2f2; border: 1.5px solid #f87171; border-radius: 12px; padding: 18px; display: none; align-items: flex-start; gap: 14px;">
-          <div class="tracker-error-icon" style="font-size: 1.8rem;">⚠️</div>
+        <!-- Error Alert when token is not in records -->
+        <div class="tracker-error-box" id="tokenTrackerError" style="display: none; margin-top: 20px; background: #fef2f2; border: 1.5px solid #f87171; border-radius: 12px; padding: 18px; align-items: flex-start; gap: 14px;">
+          <div class="tracker-error-icon" style="color: #dc2626;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
           <div class="tracker-error-content">
             <h4 style="margin: 0 0 6px; color: #991b1b; font-size: 1.1rem;">No Tracker ID Found</h4>
             <p id="tokenTrackerErrorMsg" style="margin: 0; color: #b91c1c; font-size: 0.95rem; line-height: 1.5;">This token is not registered in our APMC Mandi database. Please check your token number or book a new slot.</p>
@@ -365,10 +375,10 @@
           <!-- Official Gmail Dispatch Intimation Action -->
           <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;" id="trackEmailActionRow">
             <span style="font-size: 0.88rem; color: #475569;">
-              ✉️ Official APMC intimation dispatched to registered Gmail.
+              Official APMC intimation dispatched to registered Gmail.
             </span>
             <button type="button" class="btn btn-outline" id="trackViewEmailBtn" style="font-weight: 600; border-color: var(--primary); color: var(--primary);">
-              📬 View Official Gmail Intimation
+              View Official Gmail Intimation
             </button>
           </div>
         </div>
@@ -386,22 +396,24 @@
       <p class="section-desc" data-i18n="admin_desc">Each Government APMC Mandi operates independently. Officials can log in to access the dedicated Operating Suite with live queue calling, IoT weighbridge scale terminal, and direct DBT bank transfer ledger.</p>
 
       <div class="auth-card" style="margin: 30px auto 0; max-width: 680px; text-align: center;">
-        <div class="auth-emblem">🏛️</div>
+        <div class="auth-emblem">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3L2 10h20L12 3z"/></svg>
+        </div>
         <h3 style="font-size: 1.4rem; color: var(--green-900); margin-bottom: 8px;" data-i18n="admin_portal_box_title">APMC Superintendent &amp; Weighbridge Officer Suite</h3>
         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px;" data-i18n="admin_portal_box_desc">
           Authorized mandi personnel can log in with their Mandi Centre credentials to announce tokens, capture IoT gross/tare weights, issue official stamped receipts, and manage daily quota.
         </p>
         <div class="demo-pill" style="margin-bottom: 24px; text-align: left;">
-          <strong>💡 Demo APMC Officer Login Credentials:</strong><br/>
+          <strong>Demo APMC Officer Login Credentials:</strong><br/>
           • Officer ID: <code>TN-MANDI-101</code><br/>
           • Security PIN: <code>1234</code>
         </div>
         <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
           <a href="admin.html" class="btn btn-gold btn-lg" style="text-decoration: none;">
-            <span data-i18n="btn_enter_admin_portal">🔐 Enter APMC Officer Admin Portal</span> ➔
+            <span data-i18n="btn_enter_admin_portal">Enter APMC Officer Admin Portal</span> ➔
           </a>
           <a href="book-slot.html" class="btn btn-outline btn-lg" style="text-decoration: none;">
-            <span data-i18n="btn_book_farmer_slot">👨‍🌾 Farmer Slot Booking</span>
+            <span data-i18n="btn_book_farmer_slot">Farmer Slot Booking</span>
           </a>
         </div>
       </div>
@@ -415,22 +427,30 @@
       <h2 class="section-title" data-i18n="problem_title">Why KisanMitra?</h2>
       <div class="problem-grid">
         <div class="problem-card">
-          <div class="problem-icon">⏳</div>
+          <div class="problem-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
           <h3 data-i18n="prob_wait_title">Hours of Waiting</h3>
           <p data-i18n="prob_wait_desc">Farmers spend 6-8 hours waiting in unorganized queues at procurement centres, losing a full day of productive work.</p>
         </div>
         <div class="problem-card">
-          <div class="problem-icon">📋</div>
+          <div class="problem-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
           <h3 data-i18n="prob_trans_title">No Transparency</h3>
           <p data-i18n="prob_trans_desc">Paper-based systems leave farmers with zero visibility into queue position, weighment records, or payment timelines.</p>
         </div>
         <div class="problem-card">
-          <div class="problem-icon">🚜</div>
+          <div class="problem-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
           <h3 data-i18n="prob_cong_title">Congestion at Mandis</h3>
           <p data-i18n="prob_cong_desc">Hundreds of farmers arrive simultaneously causing chaotic congestion, vehicle blockages, and crop spoilage.</p>
         </div>
         <div class="problem-card">
-          <div class="problem-icon">💰</div>
+          <div class="problem-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
           <h3 data-i18n="prob_pay_title">Delayed Payments</h3>
           <p data-i18n="prob_pay_desc">Lack of digital tracking means farmers have no way to know when their procurement payment will be processed.</p>
         </div>
@@ -449,7 +469,9 @@
         <div class="timeline-item" data-step="1">
           <div class="timeline-dot"><span>1</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap green">📱</div>
+            <div class="timeline-icon-wrap green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
             <h3 data-i18n="step1_title">Farmer Registration</h3>
             <p data-i18n="step1_desc">Simple mobile/Aadhaar-linked sign-up process. Farmers create accounts using their phone number and verify via OTP.</p>
           </div>
@@ -458,7 +480,9 @@
         <div class="timeline-item" data-step="2">
           <div class="timeline-dot"><span>2</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap blue">📅</div>
+            <div class="timeline-icon-wrap blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
             <h3 data-i18n="step2_title">Slot Booking</h3>
             <p data-i18n="step2_desc">Choose a preferred procurement centre, date, and time slot. The system shows real-time slot availability to prevent overcrowding.</p>
           </div>
@@ -467,7 +491,9 @@
         <div class="timeline-item" data-step="3">
           <div class="timeline-dot"><span>3</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap teal">🔔</div>
+            <div class="timeline-icon-wrap teal">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            </div>
             <h3 data-i18n="step3_title">SMS / App Notification</h3>
             <p data-i18n="step3_desc">Instant confirmation via SMS and in-app notification with slot details, directions, and a reminder before the appointment.</p>
           </div>
@@ -476,7 +502,9 @@
         <div class="timeline-item" data-step="4">
           <div class="timeline-dot"><span>4</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap green">📊</div>
+            <div class="timeline-icon-wrap green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
             <h3 data-i18n="step4_title">Real-time Queue Management</h3>
             <p data-i18n="step4_desc">A digital token system with live position tracking. Farmers can see exactly how many people are ahead in the queue.</p>
           </div>
@@ -485,7 +513,9 @@
         <div class="timeline-item" data-step="5">
           <div class="timeline-dot"><span>5</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap amber">🔊</div>
+            <div class="timeline-icon-wrap amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </div>
             <h3 data-i18n="step5_title">Turn Approaching Alert</h3>
             <p data-i18n="step5_desc">Automatic notification when the farmer's turn is approaching, so they don't need to wait physically at the centre.</p>
           </div>
@@ -494,7 +524,9 @@
         <div class="timeline-item" data-step="6">
           <div class="timeline-dot"><span>6</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap rose">✅</div>
+            <div class="timeline-icon-wrap rose">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
             <h3 data-i18n="step6_title">Arrival &amp; Quality Check</h3>
             <p data-i18n="step6_desc">Staff verifies crop quality upon arrival. Results are digitally recorded with photos and grading for full transparency.</p>
           </div>
@@ -503,7 +535,9 @@
         <div class="timeline-item" data-step="7">
           <div class="timeline-dot"><span>7</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap green">⚖️</div>
+            <div class="timeline-icon-wrap green">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M6 8l6-5 6 5M3 13l3-5 3 5a3 3 0 0 1-6 0zM15 13l3-5 3 5a3 3 0 0 1-6 0z"/></svg>
+            </div>
             <h3 data-i18n="step7_title">Weighment</h3>
             <p data-i18n="step7_desc">Quantity is recorded digitally via IoT-enabled weighing systems. Farmers receive instant weight confirmation on their device.</p>
           </div>
@@ -512,7 +546,9 @@
         <div class="timeline-item" data-step="8">
           <div class="timeline-dot"><span>8</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap blue">📡</div>
+            <div class="timeline-icon-wrap blue">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            </div>
             <h3 data-i18n="step8_title">Procurement Status Update</h3>
             <p data-i18n="step8_desc">Live tracking of procurement status in the app — from quality check to weighment to payment initiation.</p>
           </div>
@@ -521,7 +557,9 @@
         <div class="timeline-item" data-step="9">
           <div class="timeline-dot"><span>9</span></div>
           <div class="timeline-content">
-            <div class="timeline-icon-wrap amber">💳</div>
+            <div class="timeline-icon-wrap amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </div>
             <h3 data-i18n="step9_title">Payment Processed</h3>
             <p data-i18n="step9_desc">Direct bank transfer with SMS/app notification. Complete payment history and digital receipts accessible anytime.</p>
           </div>
@@ -530,9 +568,11 @@
       </div>
 
       <div class="outcome-banner">
-        <div class="outcome-icon">🎯</div>
+        <div class="outcome-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
         <div class="outcome-text">
-          <h3>Result: Reduced Congestion & Waiting Time</h3>
+          <h3>Result: Reduced Congestion &amp; Waiting Time</h3>
           <p>Farmers save hours, mandis run efficiently, and the entire procurement process becomes transparent and dignified.</p>
         </div>
       </div>
@@ -546,7 +586,9 @@
       <h2 class="section-title">Built for Farmers, Powered by Technology</h2>
       <div class="features-grid">
         <div class="feature-card feature-large">
-          <div class="feature-icon-lg">🗓️</div>
+          <div class="feature-icon-lg">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
           <h3>Smart Slot Booking</h3>
           <p>AI-powered slot allocation based on crop type, quantity, and centre capacity. Book via app, USSD, or IVR call for all farmers.</p>
           <div class="feature-tags">
@@ -556,32 +598,44 @@
           </div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-sm">📍</div>
+          <div class="feature-icon-sm">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
           <h3>Live Queue Tracker</h3>
           <p>Real-time digital token with GPS-based position tracking and estimated wait time.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-sm">⚖️</div>
+          <div class="feature-icon-sm">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 3v18M6 8l6-5 6 5M3 13l3-5 3 5a3 3 0 0 1-6 0zM15 13l3-5 3 5a3 3 0 0 1-6 0z"/></svg>
+          </div>
           <h3>Digital Weighment</h3>
           <p>IoT-integrated weighing with tamper-proof digital records and instant farmer verification.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-sm">💳</div>
+          <div class="feature-icon-sm">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
           <h3>Instant Payments</h3>
           <p>Direct bank transfers with real-time tracking, digital receipts, and payment history.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-sm">📊</div>
+          <div class="feature-icon-sm">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
           <h3>Analytics Dashboard</h3>
           <p>Procurement centres get data-driven insights on throughput, peak hours, and bottlenecks.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-sm">🛡️</div>
+          <div class="feature-icon-sm">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
           <h3>Aadhaar Verified</h3>
           <p>Secure identity verification prevents fraud and ensures authentic farmer registrations.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon-sm">🌐</div>
+          <div class="feature-icon-sm">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
           <h3>Multi-lingual Support</h3>
           <p>Available in Hindi, English, and 10+ regional languages for nationwide accessibility.</p>
         </div>
@@ -597,39 +651,50 @@
       <p class="section-desc">Real-time procurement centre management at a glance</p>
       <div class="dashboard-mockup">
         <div class="dash-topbar">
-          <div class="dash-logo">🌾 KisanMitra Admin</div>
+          <div class="dash-logo">
+            <span class="logo-icon" style="margin-right: 6px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+            </span>
+            <span>KisanMitra APMC Admin</span>
+          </div>
           <div class="dash-topbar-right">
-            <span class="dash-centre-name">📍 Mandi — Nashik</span>
+            <span class="dash-centre-name">Mandi — Nashik APMC</span>
             <span class="dash-admin-name">Admin: Suresh K.</span>
           </div>
         </div>
         <div class="dash-body">
           <div class="dash-sidebar">
-            <div class="dash-nav-item active">📊 Overview</div>
-            <div class="dash-nav-item">👨‍🌾 Queue</div>
-            <div class="dash-nav-item">📅 Slots</div>
-            <div class="dash-nav-item">⚖️ Weighment</div>
-            <div class="dash-nav-item">💳 Payments</div>
-            <div class="dash-nav-item">📈 Reports</div>
+            <div class="dash-nav-item active">Overview</div>
+            <div class="dash-nav-item">Live Queue</div>
+            <div class="dash-nav-item">Slots</div>
+            <div class="dash-nav-item">Weighment</div>
+            <div class="dash-nav-item">Payments</div>
+            <div class="dash-nav-item">Reports</div>
           </div>
           <div class="dash-main">
             <div class="dash-stats-row">
               <div class="dash-stat-card">
-                <div class="dash-stat-icon blue-bg">👨‍🌾</div>
+                <div class="dash-stat-icon blue-bg">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
                 <div class="dash-stat-info">
                   <span class="dash-stat-val">147</span>
                   <span class="dash-stat-label">Farmers Today</span>
                 </div>
               </div>
               <div class="dash-stat-card">
-                <div class="dash-stat-icon green-bg">✅</div>
+                <div class="dash-stat-icon green-bg">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
                 <div class="dash-stat-info">
                   <span class="dash-stat-val">98</span>
                   <span class="dash-stat-label">Processed</span>
                 </div>
               </div>
               <div class="dash-stat-card">
-                <div class="dash-stat-icon amber-bg">⏳</div>
+                <div class="dash-stat-icon amber-bg">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
                 <div class="dash-stat-info">
                   <span class="dash-stat-val">32</span>
                   <span class="dash-stat-label">In Queue</span>
@@ -726,7 +791,9 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="nav-logo">
-            <span class="logo-icon">🌾</span>
+            <span class="logo-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+            </span>
             <span class="logo-text">Kisan<span class="logo-accent">Mitra</span></span>
           </div>
           <p>Digitizing farmer procurement for a more efficient, transparent, and dignified experience.</p>
@@ -746,7 +813,7 @@
           <a href="#">Toll Free Help (IVR)</a>
         </div>
         <div class="footer-links">
-          <h4>Contact & Support</h4>
+          <h4>Contact &amp; Support</h4>
           <a href="#">support@kisanmitra.in</a>
           <a href="#">1800-180-1551 (Toll Free)</a>
           <a href="#">Procurement Centres Directory</a>
@@ -767,26 +834,28 @@
     <div class="modal-card">
       <button class="modal-close" id="closeUnifiedLoginModal">&times;</button>
       <div class="modal-header">
-        <div class="modal-icon">🌾</div>
+        <div class="modal-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+        </div>
         <h2>Sign In to KisanMitra</h2>
         <p>Choose your role to access farmer slot booking or mandi management</p>
       </div>
 
       <div class="role-selector">
-        <button type="button" class="role-pill active" id="tabFarmerLoginBtn">👨‍🌾 Farmer Login</button>
-        <button type="button" class="role-pill" id="tabAdminLoginBtn">🏛️ Mandi Admin Login</button>
+        <button type="button" class="role-pill active" id="tabFarmerLoginBtn">Farmer Login</button>
+        <button type="button" class="role-pill" id="tabAdminLoginBtn">Mandi Admin Login</button>
       </div>
 
       <!-- Farmer Login Sub-section -->
       <div id="farmerLoginSection" class="auth-sub-section">
         <div class="demo-pill" style="margin-bottom: 16px;">
-          <strong>💡 Demo Farmer Login:</strong> Mobile: <code>9876543210</code> | OTP: <code>1234</code>
+          <strong>Demo Farmer Login:</strong> Mobile: <code>9876543210</code> | OTP: <code>1234</code>
         </div>
         <form id="farmerLoginForm" class="modal-form">
           <div class="form-group">
             <label>Mobile Number</label>
             <div class="input-with-prefix">
-              <span class="input-prefix">🇮🇳 +91</span>
+              <span class="input-prefix">+91</span>
               <input type="tel" id="farmerLoginPhone" placeholder="Enter 10-digit mobile number" maxlength="10" value="9876543210" required />
             </div>
           </div>
@@ -800,10 +869,10 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 10px;">
-            <span>👨‍🌾 Login as Farmer</span>
+            <span>Login as Farmer</span>
           </button>
           <button type="button" class="btn btn-outline btn-block" id="farmerQuickDemoBtn" style="margin-top: 10px;">
-            <span>⚡ Instant Demo Login (Ramesh Kumar)</span>
+            <span>Instant Demo Login (Ramesh Kumar)</span>
           </button>
         </form>
       </div>
@@ -811,7 +880,7 @@
       <!-- Mandi Admin Login Sub-section -->
       <div id="adminLoginSection" class="auth-sub-section" style="display: none;">
         <div class="demo-pill" style="margin-bottom: 16px;">
-          <strong>💡 Demo Mandi Officer:</strong> ID: <code>TN-MANDI-101</code> | PIN: <code>1234</code>
+          <strong>Demo Mandi Officer:</strong> ID: <code>TN-MANDI-101</code> | PIN: <code>1234</code>
         </div>
         <form id="modalAdminLoginForm" class="modal-form">
           <div class="form-group">
@@ -829,10 +898,10 @@
             </div>
           </div>
           <button type="submit" class="btn btn-gold btn-block btn-lg" style="margin-top: 10px;">
-            <span>🏛️ Open APMC Mandi Suite</span>
+            <span>Open APMC Mandi Suite</span>
           </button>
           <button type="button" class="btn btn-outline btn-block" id="adminQuickDemoBtn" style="margin-top: 10px;">
-            <span>⚡ Instant Demo Admin Login (Pollachi)</span>
+            <span>Instant Demo Admin Login (Pollachi)</span>
           </button>
         </form>
       </div>
@@ -844,7 +913,9 @@
     <div class="modal-card">
       <button class="modal-close" id="closeRegisterModal">&times;</button>
       <div class="modal-header">
-        <div class="modal-icon">📝</div>
+        <div class="modal-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
         <h2>Farmer Registration</h2>
         <p>Aadhaar &amp; Mobile linked instant sign-up for mandi procurement</p>
       </div>
@@ -893,7 +964,7 @@
           </div>
 
           <div class="form-group">
-            <label>Real Gmail Address * (For Official Booking Intimation & Weighment Advice)</label>
+            <label>Real Gmail Address * (For Official Booking Intimation &amp; Weighment Advice)</label>
             <input type="email" id="regEmail" placeholder="e.g. farmer@gmail.com" required />
             <small style="color: #64748b; font-size: 0.78rem;">Formal booking confirmation and weighment price advice will be delivered to this Gmail.</small>
           </div>
@@ -916,7 +987,9 @@
         <!-- Step 2: OTP Verification -->
         <div id="registerStep2" style="display: none;">
           <div class="otp-verification-banner">
-            <span class="otp-icon">📲</span>
+            <span class="otp-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </span>
             <div>
               <strong>Verify OTP</strong>
               <p>Sent to <span id="regPhoneDisplay">+91 98765 43210</span></p>
@@ -946,18 +1019,18 @@
       <!-- Step 3: Success Screen -->
       <div class="modal-success-screen" id="registerSuccessScreen" style="display: none;">
         <div class="success-icon">✓</div>
-        <h3>Registration Completed!</h3>
+        <h3>Registration Completed</h3>
         <p>Your Kisan ID has been generated successfully.</p>
         <div class="kisan-id-card">
           <div class="kisan-id-header">
-            <span>🇮🇳 KisanMitra Digital ID</span>
+            <span>KisanMitra Digital ID</span>
             <span class="active-badge">Active</span>
           </div>
           <div class="kisan-id-body">
             <div><small>Farmer Name</small><strong id="resCardName">Ramesh Patil</strong></div>
             <div><small>Kisan ID</small><strong>KM-2026-9812</strong></div>
             <div><small>Primary Mandi</small><strong id="resCardMandi">Nashik APMC</strong></div>
-            <div><small>Aadhaar Verified</small><strong>✓ Verified</strong></div>
+            <div><small>Aadhaar Verified</small><strong>Verified</strong></div>
           </div>
         </div>
         <div class="action-buttons-row">
@@ -973,7 +1046,9 @@
     <div class="modal-card">
       <button class="modal-close" id="closeSlotModal">&times;</button>
       <div class="modal-header">
-        <div class="modal-icon">📅</div>
+        <div class="modal-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
         <h2>Book Procurement Slot</h2>
         <p>Select centre, date and crop to generate your digital queue token</p>
       </div>
@@ -1024,7 +1099,7 @@
 
       <!-- Slot Success Screen -->
       <div class="modal-success-screen" id="slotSuccessScreen" style="display: none;">
-        <div class="success-icon">🎟️</div>
+        <div class="success-icon">✓</div>
         <h3>Slot Booked Successfully!</h3>
         <p>Your digital procurement pass is ready. Show this at entry gate.</p>
 
@@ -1040,7 +1115,7 @@
             <div><small>Queue Status</small><strong class="text-green">Confirmed</strong></div>
           </div>
           <div class="token-qr-mock">
-            <div class="qr-box">📱 QR Code for Gate Scanner</div>
+            <div class="qr-box">QR Code for Gate Scanner</div>
           </div>
         </div>
 
@@ -1062,11 +1137,13 @@
       </div>
       <div class="gmail-body">
         <div class="email-subject-line" id="emailSubjectLine">
-          <span>📢 [APMC Mandi] Verified Procurement Intimation &amp; DBT Settlement — Token #KM-2048</span>
+          <span>[APMC Mandi] Verified Procurement Intimation &amp; DBT Settlement — Token #KM-2048</span>
         </div>
         <div class="email-meta-card">
           <div class="sender-info">
-            <div class="sender-avatar">🏛️</div>
+            <div class="sender-avatar">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3L2 10h20L12 3z"/></svg>
+            </div>
             <div class="sender-details">
               <strong id="emailSenderName">Government APMC Procurement Cell</strong>
               <div class="sender-email" id="emailSenderAddress">&lt;apmc.procurement@kisanmitra.gov.in&gt;</div>
@@ -1082,7 +1159,7 @@
               <h3 id="adviceTitle">GOVERNMENT APMC MANDI PROCUREMENT INTIMATION</h3>
               <p id="adviceSubtitle">OFFICIAL MANDI PROCUREMENT &amp; WEIGHMENT ADVICE</p>
             </div>
-            <div class="apmc-verified-stamp" id="emailStatusStamp">✓ CERTIFIED MANDI INTIMATION</div>
+            <div class="apmc-verified-stamp" id="emailStatusStamp">CERTIFIED MANDI INTIMATION</div>
           </div>
           <div class="apmc-advice-body">
             <div class="advice-grid" id="emailAdviceGrid">
@@ -1126,7 +1203,7 @@
                 <strong id="emailFinalPayout">₹1,60,704</strong>
               </div>
               <div class="pfb-right">
-                <span class="dbt-status-pill" id="emailDbtPill">✓ Direct Bank Credit via PFMS</span>
+                <span class="dbt-status-pill" id="emailDbtPill">Direct Bank Credit via PFMS</span>
                 <div>UTR: <code id="emailUtr">PFMS-DBT-2026-99412</code></div>
               </div>
             </div>
@@ -1138,7 +1215,7 @@
         </div>
       </div>
       <div class="gmail-actions-bar">
-        <button class="btn btn-outline" onclick="window.print()">🖨️ Print Advice</button>
+        <button class="btn btn-outline" onclick="window.print()">Print Advice</button>
         <button class="btn btn-gold" id="closeGmailModalBtn">Close Intimation</button>
       </div>
     </div>
@@ -1150,7 +1227,7 @@
       <button class="modal-close" id="closeWeighSlipModal">&times;</button>
       <div class="slip-container" id="printableSlip">
         <div class="slip-header">
-          <div class="slip-gov-badge">🇮🇳 GOVT. OF INDIA • DEPT OF AGRI MARKETING &amp; APMC</div>
+          <div class="slip-gov-badge">GOVT. OF INDIA • DEPT OF AGRI MARKETING &amp; APMC</div>
           <h2 id="slipMandiName">Nashik APMC Main Market Yard</h2>
           <p id="slipMandiAddress">Panchavati Market Yard, Nashik - 422001 | Phone: +91 253 257 8890</p>
           <div class="slip-badge-row">
@@ -1203,7 +1280,9 @@
 
         <div class="slip-dbt-footer">
           <div class="dbt-status-box">
-            <span class="dbt-icon">💳</span>
+            <span class="dbt-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </span>
             <div>
               <strong>Payment Mode: Direct Bank Transfer (DBT / PFMS)</strong>
               <p>Account: State Bank of India • A/C: XXXXXX4412 • IFSC: SBIN0001234</p>
@@ -1217,7 +1296,7 @@
       </div>
 
       <div class="slip-modal-actions">
-        <button class="btn btn-primary" id="printSlipBtn">🖨️ Print Official Receipt</button>
+        <button class="btn btn-primary" id="printSlipBtn">Print Official Receipt</button>
         <button class="btn btn-outline" id="closeSlipModalBtn">Close</button>
       </div>
     </div>
@@ -1227,26 +1306,32 @@
 
   <!-- ===== AI CHATBOT ===== -->
   <div class="chat-widget" id="chatWidget">
-    <div class="chat-toggle" id="chatToggleBtn" title="Chat with KisanBot AI" aria-label="Toggle KisanBot AI Assistant">
-      <span class="chat-icon" id="chatToggleIcon">💬</span>
+    <div class="chat-toggle" id="chatToggleBtn" title="Helpdesk &amp; Support Assistant" aria-label="Toggle Helpdesk Assistant">
+      <span class="chat-icon" id="chatToggleIcon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
     </div>
-    <div class="chat-box" id="chatBox" role="dialog" aria-label="KisanBot AI Assistant">
+    <div class="chat-box" id="chatBox" role="dialog" aria-label="KisanMitra Helpdesk Assistant">
       <div class="chat-header">
         <div class="chat-header-info">
-          <span class="chat-bot-avatar">🌾</span>
+          <span class="chat-bot-avatar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </span>
           <div>
-            <h4>KisanBot</h4>
-            <span class="chat-status-dot">● Online (AI Help)</span>
+            <h4>KisanMitra Helpdesk</h4>
+            <span class="chat-status-dot">● Online Support</span>
           </div>
         </div>
         <button id="chatCloseBtn" class="chat-close-btn" title="Close Chat (Esc)" aria-label="Close Chat">✕</button>
       </div>
       <div class="chat-body" id="chatBody">
-        <div class="chat-msg bot-msg">Namaste! I am KisanBot 🌾. How can I help you today? Do you need help checking mandi prices, MSP rates, or booking a procurement slot?</div>
+        <div class="chat-msg bot-msg">Namaste! Welcome to KisanMitra Mandi Helpdesk. How can I assist you today? You can ask about government MSP rates, nearest APMC mandis, slot booking, or queue status.</div>
       </div>
       <div class="chat-input-area">
         <input type="text" id="chatInput" placeholder="Type message in English / हिंदी / தமிழ்..." autocomplete="off" />
-        <button id="chatSendBtn" title="Send Message" aria-label="Send Message">➤</button>
+        <button id="chatSendBtn" title="Send Message" aria-label="Send Message">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
       </div>
     </div>
   </div>

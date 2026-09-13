@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Government APMC Mandi Officer Portal — KisanMitra</title>
   <meta name="description" content="Dedicated administrative operating suite for Government Mandi Superintendents, Weighbridge Operators, and Agriculture Officers." />
-  <meta name="theme-color" content="#1b4332" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>" />
+  <meta name="theme-color" content="#166534" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23166534%22 stroke-width=%222%22><path d=%22M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z%22/><path d=%22M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4%22/></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -18,18 +18,22 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">
-        <span class="logo-icon">🌾</span>
+        <span class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+        </span>
         <span class="logo-text">Kisan<span class="logo-accent">Mitra</span></span>
       </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="index.html#mandi-locator" data-i18n="nav_find_mandi">📍 Find Mandi</a></li>
-        <li><a href="index.html#mandi-directory" data-i18n="nav_directory">🏛️ State Directory</a></li>
+        <li><a href="index.html#mandi-locator" data-i18n="nav_find_mandi">Find Mandi</a></li>
+        <li><a href="index.html#mandi-directory" data-i18n="nav_directory">State Directory</a></li>
         <li><a href="index.html#how-it-works" data-i18n="nav_how_it_works">How It Works</a></li>
       </ul>
       <div class="nav-actions">
         <!-- Global Language Selector in Navbar -->
         <div class="lang-selector-wrap">
-          <span class="lang-icon">🌐</span>
+          <span class="lang-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </span>
           <select id="globalLangSelect" class="lang-dropdown" aria-label="Select Language">
             <option value="en" selected>English</option>
             <option value="ta">தமிழ் (Tamil)</option>
@@ -39,10 +43,10 @@
         <!-- Dynamic Login / Profile Area -->
         <div id="navAuthArea" style="display: flex; gap: 8px; align-items: center;">
           <button class="btn btn-outline" id="navRegisterBtn" style="padding: 7px 14px; font-weight: 600; font-size: 0.85rem; border: 1.5px solid var(--primary); color: var(--primary);">
-            📝 Register
+            Register
           </button>
           <button class="btn btn-gold" id="navLoginBtn" style="padding: 7px 16px; font-weight: 600; font-size: 0.85rem;">
-            🔑 Login
+            Login
           </button>
         </div>
       </div>
@@ -58,7 +62,7 @@
       <div class="page-breadcrumb">
         <a href="index.html">Home</a> &gt; <span>Official Mandi Admin Portal</span>
       </div>
-      <h1 class="page-title" data-i18n="admin_title">🏛️ Government APMC Mandi Operating Suite</h1>
+      <h1 class="page-title" data-i18n="admin_title">Government APMC Mandi Operating Suite</h1>
       <p class="page-subtitle" data-i18n="admin_desc">Secure control center for Mandi Superintendents, Weighbridge Staff, and Accounts Officers to operate isolated tokens, weighment scales, and DBT payouts.</p>
     </div>
   </div>
@@ -67,13 +71,15 @@
   <div id="adminLoginGate" class="auth-wrapper">
     <div class="auth-card">
       <div class="auth-header">
-        <div class="auth-emblem">🏛️</div>
+        <div class="auth-emblem">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3L2 10h20L12 3z"/></svg>
+        </div>
         <h2 data-i18n="admin_auth_title">APMC Officer Authentication</h2>
         <p data-i18n="admin_auth_subtitle">Enter your designated Mandi Centre credentials to access the live operations suite.</p>
       </div>
 
       <div class="demo-pill">
-        <strong>💡 Demo Mandi Officer Credentials:</strong><br/>
+        <strong>Demo Mandi Officer Credentials:</strong><br/>
         • Officer ID: <code>TN-MANDI-101</code><br/>
         • PIN / Password: <code>1234</code><br/>
         • <em>You can also select any Mandi from the list.</em>
@@ -110,7 +116,7 @@
         </div>
 
         <button type="submit" class="btn btn-gold btn-lg" style="width: 100%;">
-          <span data-i18n="admin_login_btn">🔐 Secure Officer Login &amp; Open Command Center</span>
+          <span data-i18n="admin_login_btn">Secure Officer Login &amp; Open Command Center</span>
         </button>
       </form>
     </div>
@@ -124,7 +130,7 @@
         <!-- Top Mandi Selector Bar -->
         <div class="admin-topbar">
           <div class="admin-selector-wrap">
-            <label for="adminMandiSelect"><span class="mandi-icon">🏛️</span> Operating Centre:</label>
+            <label for="adminMandiSelect">Operating Centre:</label>
             <select id="adminMandiSelect" class="admin-mandi-dropdown">
               <!-- Dynamically populated with all mandis -->
             </select>
@@ -135,30 +141,30 @@
               <span id="adminOfficerName">Mandi Superintendent: Suresh Kulkarni</span>
             </div>
             <span class="admin-mandi-tag" id="adminMandiTag">APMC Grade A | Reg: MH-APMC-042</span>
-            <button class="btn btn-sm btn-outline-danger" id="adminLogoutBtn" style="margin-left: 10px;">🚪 Logout / Exit</button>
+            <button class="btn btn-sm btn-outline-danger" id="adminLogoutBtn" style="margin-left: 10px;">Logout / Exit</button>
           </div>
         </div>
 
         <!-- Admin Navigation Tabs -->
         <div class="admin-nav-tabs">
           <button class="admin-tab-btn active" data-tab="tab-overview">
-            <span>📊 Live Overview</span>
+            <span>Live Overview</span>
           </button>
           <button class="admin-tab-btn" data-tab="tab-queue">
-            <span>👨‍🌾 Live Queue &amp; Calling</span>
+            <span>Live Queue &amp; Calling</span>
             <span class="tab-count-badge" id="adminQueueCountBadge">4</span>
           </button>
           <button class="admin-tab-btn" data-tab="tab-weighbridge">
-            <span>⚖️ IoT Weighbridge Terminal</span>
+            <span>IoT Weighbridge Terminal</span>
           </button>
           <button class="admin-tab-btn" data-tab="tab-slots">
-            <span>📅 Slot &amp; Capacity Control</span>
+            <span>Slot &amp; Capacity Control</span>
           </button>
           <button class="admin-tab-btn" data-tab="tab-msp">
-            <span>🌾 Daily MSP Rates Master</span>
+            <span>Daily MSP Rates Master</span>
           </button>
           <button class="admin-tab-btn" data-tab="tab-reports">
-            <span>💳 DBT Settlements &amp; Reports</span>
+            <span>DBT Settlements &amp; Reports</span>
           </button>
         </div>
 
@@ -167,21 +173,27 @@
           <!-- Overview Stats -->
           <div class="dash-stats-row">
             <div class="dash-stat-card">
-              <div class="dash-stat-icon blue-bg">👨‍🌾</div>
+              <div class="dash-stat-icon blue-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
               <div class="dash-stat-info">
                 <span class="dash-stat-val" id="statTodayTotal">148</span>
                 <span class="dash-stat-label">Total Bookings Today</span>
               </div>
             </div>
             <div class="dash-stat-card">
-              <div class="dash-stat-icon green-bg">✅</div>
+              <div class="dash-stat-icon green-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
               <div class="dash-stat-info">
                 <span class="dash-stat-val" id="statProcessed">112</span>
                 <span class="dash-stat-label">Procured &amp; Weighed</span>
               </div>
             </div>
             <div class="dash-stat-card">
-              <div class="dash-stat-icon amber-bg">⏳</div>
+              <div class="dash-stat-icon amber-bg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
               <div class="dash-stat-info">
                 <span class="dash-stat-val" id="statInQueue">36</span>
                 <span class="dash-stat-label">Currently in Queue</span>
@@ -199,13 +211,13 @@
           <!-- Active Calling Banner -->
           <div class="now-serving-banner">
             <div class="serving-left">
-              <div class="serving-tag">📢 NOW SERVING AT WEIGHBRIDGE #1</div>
+              <div class="serving-tag">NOW SERVING AT WEIGHBRIDGE #1</div>
               <div class="serving-token" id="nowServingToken">Token #KM-2045</div>
               <div class="serving-details" id="nowServingDetails">Farmer: Ramesh Patil | Crop: Wheat (12 Qtl) | Gate 1</div>
             </div>
             <div class="serving-right">
               <button class="btn btn-gold btn-lg" id="overviewCallNextBtn">
-                <span>🔊 Call Next Farmer</span>
+                <span>Call Next Farmer</span>
               </button>
             </div>
           </div>
@@ -245,10 +257,10 @@
             </div>
             <div class="qch-actions">
               <button class="btn btn-gold" id="callNextTokenMainBtn">
-                <span>🔊 Announce &amp; Call Next</span>
+                <span>Announce &amp; Call Next</span>
               </button>
               <button class="btn btn-outline" id="refreshQueueBtn">
-                <span>🔄 Refresh Queue</span>
+                <span>Refresh Queue</span>
               </button>
             </div>
           </div>
@@ -259,8 +271,8 @@
               <div class="huge-token-number" id="boardActiveToken">#KM-2045</div>
               <div class="board-farmer-meta" id="boardActiveMeta">Farmer: Ramesh Patil • Crop: Wheat • Slot: 09:00 AM</div>
               <div class="call-controls-row">
-                <button class="btn btn-sm btn-outline" id="repeatCallSoundBtn">🔔 Ring Bell Again</button>
-                <button class="btn btn-sm btn-primary" id="advanceCurrentTokenBtn">➔ Move to Next Stage</button>
+                <button class="btn btn-sm btn-outline" id="repeatCallSoundBtn">Ring Bell Again</button>
+                <button class="btn btn-sm btn-primary" id="advanceCurrentTokenBtn">Move to Next Stage</button>
               </div>
             </div>
             <div class="calling-quick-stats">
@@ -317,7 +329,9 @@
           <div class="weighbridge-container">
             <div class="wb-form-card">
               <div class="wb-header">
-                <div class="wb-icon">⚖️</div>
+                <div class="wb-icon">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 3v18M6 8l6-5 6 5M3 13l3-5 3 5a3 3 0 0 1-6 0zM15 13l3-5 3 5a3 3 0 0 1-6 0z"/></svg>
+                </div>
                 <div>
                   <h3>IoT Digital Weighbridge Terminal</h3>
                   <p>Connected Scale: <strong>Weighbridge Scale #01 (Calibrated)</strong></p>
@@ -394,10 +408,10 @@
                 </div>
                 <div class="payout-right" style="display: flex; gap: 8px; flex-wrap: wrap;">
                   <button class="btn btn-gold btn-lg" id="generateWeighSlipBtn">
-                    <span>⚖️ Certify Weight &amp; Quality, Release DBT &amp; Dispatch Gmail</span>
+                    <span>Certify Weight &amp; Quality, Release DBT &amp; Dispatch Gmail</span>
                   </button>
                   <button type="button" class="btn btn-outline" id="viewAdminEmailBtn">
-                    <span>📬 View Gmail Intimation</span>
+                    <span>View Gmail Intimation</span>
                   </button>
                 </div>
               </div>
@@ -421,7 +435,7 @@
                 <h3>Daily Capacity &amp; Time Slot Management</h3>
                 <p>Configure slot quotas per time window to balance vehicular traffic and prevent yard congestion.</p>
               </div>
-              <button class="btn btn-primary" id="saveSlotConfigBtn">💾 Save Mandi Slot Settings</button>
+              <button class="btn btn-primary" id="saveSlotConfigBtn">Save Mandi Slot Settings</button>
             </div>
 
             <div class="slots-config-grid" id="slotsConfigGrid">
@@ -429,11 +443,11 @@
             </div>
 
             <div class="emergency-override-box">
-              <h4>🚨 Emergency Capacity Overrides</h4>
+              <h4>Emergency Capacity Overrides</h4>
               <p>Need to handle sudden post-harvest influx or weather alerts?</p>
               <div class="emergency-actions">
                 <button class="btn btn-outline" id="addEmergencySlotBtn">+ Add 10 Emergency Slots Today</button>
-                <button class="btn btn-outline" id="freezeBookingBtn">❄️ Temporary Freeze New Bookings</button>
+                <button class="btn btn-outline" id="freezeBookingBtn">Temporary Freeze New Bookings</button>
               </div>
             </div>
           </div>
@@ -447,7 +461,7 @@
                 <h3>Prevailing Government MSP &amp; Market Procurement Rates</h3>
                 <p>Mandi Superintendent can update active buying rates and permissible moisture tolerance thresholds.</p>
               </div>
-              <button class="btn btn-gold" id="saveMspRatesBtn">💾 Update Mandi Rates</button>
+              <button class="btn btn-gold" id="saveMspRatesBtn">Update Mandi Rates</button>
             </div>
 
             <div class="msp-table-wrap">
@@ -477,7 +491,7 @@
                 <h3>Direct Bank Transfer (DBT) Daily Settlement Batch</h3>
                 <p>Export official procurement logbooks for State Agriculture Marketing Board &amp; PFMS.</p>
               </div>
-              <button class="btn btn-primary" id="exportReportBtn">📥 Export Mandi Daily Report (CSV / PDF)</button>
+              <button class="btn btn-primary" id="exportReportBtn">Export Mandi Daily Report (CSV / PDF)</button>
             </div>
 
             <div class="settlement-summary-cards">
@@ -533,7 +547,9 @@
       <!-- Printable Weighment Slip Content -->
       <div class="official-weigh-slip" id="printableSlipArea">
         <div class="slip-header-border">
-          <div class="slip-emblem">🌾</div>
+          <div class="slip-emblem">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+          </div>
           <div class="slip-gov-title">GOVERNMENT APMC REGULATED MARKET</div>
           <div class="slip-sub-title">DEPARTMENT OF AGRICULTURAL MARKETING &amp; AGRI BUSINESS</div>
           <div class="slip-mandi-info" id="slipMandiHeader">Pollachi Regulated Market, Coimbatore, Tamil Nadu</div>
@@ -598,7 +614,9 @@
 
         <div class="slip-dbt-footer">
           <div class="dbt-status-box">
-            <span class="dbt-icon">💳</span>
+            <span class="dbt-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </span>
             <div>
               <strong>Payment Mode: Direct DBT Bank Transfer</strong><br/>
               <small>PFMS Reference: PFMS/TN/2026/09/882194 | Bank Credit within 24 Hrs</small>
@@ -613,7 +631,7 @@
 
       <div class="slip-modal-actions">
         <button class="btn btn-outline" id="closeSlipBtn2">Close Window</button>
-        <button class="btn btn-gold btn-lg" id="printSlipBtn" onclick="window.print()">🖨️ Print Official Weighment Slip</button>
+        <button class="btn btn-gold btn-lg" id="printSlipBtn" onclick="window.print()">Print Official Weighment Slip</button>
       </div>
     </div>
   </div>
@@ -624,7 +642,9 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="nav-logo">
-            <span class="logo-icon">🌾</span>
+            <span class="logo-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+            </span>
             <span class="logo-text">Kisan<span class="logo-accent">Mitra</span></span>
           </a>
           <p class="footer-tagline">
@@ -641,9 +661,9 @@
         </div>
         <div class="footer-col">
           <h4>National APMC Helplines</h4>
-          <a href="tel:18001801551">📞 Kisan Call Centre: 1800-180-1551</a>
-          <a href="tel:18002700224">📞 e-NAM National Toll Free: 1800-270-0224</a>
-          <a href="mailto:support@kisanmitra.gov.in">✉️ support@kisanmitra.gov.in</a>
+          <a href="tel:18001801551">Kisan Call Centre: 1800-180-1551</a>
+          <a href="tel:18002700224">e-NAM National Toll Free: 1800-270-0224</a>
+          <a href="mailto:support@kisanmitra.gov.in">support@kisanmitra.gov.in</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -665,11 +685,13 @@
       </div>
       <div class="gmail-body">
         <div class="email-subject-line" id="emailSubjectLine">
-          <span>📢 [APMC Pollachi] Verified Procurement Intimation &amp; DBT Settlement — Token #KM-2048</span>
+          <span>[APMC Pollachi] Verified Procurement Intimation &amp; DBT Settlement — Token #KM-2048</span>
         </div>
         <div class="email-meta-card">
           <div class="sender-info">
-            <div class="sender-avatar">🏛️</div>
+            <div class="sender-avatar">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3L2 10h20L12 3z"/></svg>
+            </div>
             <div class="sender-details">
               <strong id="emailSenderName">Government APMC Procurement Cell, Pollachi Regulated Market</strong>
               <div class="sender-email" id="emailSenderAddress">&lt;apmc.pollachi@kisanmitra.gov.in&gt;</div>
@@ -685,7 +707,7 @@
               <h3>GOVERNMENT APMC MANDI PROCUREMENT ADVICE</h3>
               <p>DIRECT BENEFIT TRANSFER (PFMS) DISBURSEMENT INTIMATION</p>
             </div>
-            <div class="apmc-verified-stamp" id="emailStatusStamp">✓ CERTIFIED WEIGHMENT &amp; GRADE</div>
+            <div class="apmc-verified-stamp" id="emailStatusStamp">CERTIFIED WEIGHMENT &amp; GRADE</div>
           </div>
           <div class="apmc-advice-body">
             <div class="advice-grid">
@@ -729,7 +751,7 @@
                 <strong id="emailFinalPayout">₹1,60,704</strong>
               </div>
               <div class="pfb-right">
-                <span class="dbt-status-pill">✓ Direct Bank Credit via PFMS</span>
+                <span class="dbt-status-pill">Direct Bank Credit via PFMS</span>
                 <div>UTR: <code id="emailUtr">PFMS-DBT-2026-99412</code></div>
               </div>
             </div>
@@ -741,7 +763,7 @@
         </div>
       </div>
       <div class="gmail-actions-bar">
-        <button class="btn btn-outline" onclick="window.print()">🖨️ Print Advice</button>
+        <button class="btn btn-outline" onclick="window.print()">Print Advice</button>
         <button class="btn btn-gold" id="closeGmailModalBtn">Close Intimation</button>
       </div>
     </div>
@@ -752,26 +774,28 @@
     <div class="modal-card">
       <button class="modal-close" id="closeUnifiedLoginModal">&times;</button>
       <div class="modal-header">
-        <div class="modal-icon">🌾</div>
+        <div class="modal-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2"><path d="M12 2a9 9 0 0 1 9 9c0 4.97-4.03 9-9 9A9 9 0 0 1 3 11a9 9 0 0 1 9-9z"/><path d="M12 6v12M8 10l4-4 4 4M8 14l4 4 4-4"/></svg>
+        </div>
         <h2>Sign In to KisanMitra</h2>
         <p>Choose your role to access farmer slot booking or mandi management</p>
       </div>
 
       <div class="role-selector">
-        <button type="button" class="role-pill" id="tabFarmerLoginBtn">👨‍🌾 Farmer Login</button>
-        <button type="button" class="role-pill active" id="tabAdminLoginBtn">🏛️ Mandi Admin Login</button>
+        <button type="button" class="role-pill" id="tabFarmerLoginBtn">Farmer Login</button>
+        <button type="button" class="role-pill active" id="tabAdminLoginBtn">Mandi Admin Login</button>
       </div>
 
       <!-- Farmer Login Sub-section -->
       <div id="farmerLoginSection" class="auth-sub-section" style="display: none;">
         <div class="demo-pill" style="margin-bottom: 16px;">
-          <strong>💡 Demo Farmer Login:</strong> Mobile: <code>9876543210</code> | OTP: <code>1234</code>
+          <strong>Demo Farmer Login:</strong> Mobile: <code>9876543210</code> | OTP: <code>1234</code>
         </div>
         <form id="farmerLoginForm" class="modal-form">
           <div class="form-group">
             <label>Mobile Number</label>
             <div class="input-with-prefix">
-              <span class="input-prefix">🇮🇳 +91</span>
+              <span class="input-prefix">+91</span>
               <input type="tel" id="farmerLoginPhone" placeholder="Enter 10-digit mobile number" maxlength="10" value="9876543210" required />
             </div>
           </div>
@@ -785,10 +809,10 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 10px;">
-            <span>👨‍🌾 Login as Farmer</span>
+            <span>Login as Farmer</span>
           </button>
           <button type="button" class="btn btn-outline btn-block" id="farmerQuickDemoBtn" style="margin-top: 10px;">
-            <span>⚡ Instant Demo Login (Ramesh Kumar)</span>
+            <span>Instant Demo Login (Ramesh Kumar)</span>
           </button>
         </form>
       </div>
@@ -796,7 +820,7 @@
       <!-- Mandi Admin Login Sub-section -->
       <div id="adminLoginSection" class="auth-sub-section">
         <div class="demo-pill" style="margin-bottom: 16px;">
-          <strong>💡 Demo Mandi Officer:</strong> ID: <code>TN-MANDI-101</code> | PIN: <code>1234</code>
+          <strong>Demo Mandi Officer:</strong> ID: <code>TN-MANDI-101</code> | PIN: <code>1234</code>
         </div>
         <form id="modalAdminLoginForm" class="modal-form">
           <div class="form-group">
@@ -814,10 +838,10 @@
             </div>
           </div>
           <button type="submit" class="btn btn-gold btn-block btn-lg" style="margin-top: 10px;">
-            <span>🏛️ Open APMC Mandi Suite</span>
+            <span>Open APMC Mandi Suite</span>
           </button>
           <button type="button" class="btn btn-outline btn-block" id="adminQuickDemoBtn" style="margin-top: 10px;">
-            <span>⚡ Instant Demo Admin Login (Pollachi)</span>
+            <span>Instant Demo Admin Login (Pollachi)</span>
           </button>
         </form>
       </div>
@@ -828,26 +852,32 @@
 
   <!-- ===== AI CHATBOT ===== -->
   <div class="chat-widget" id="chatWidget">
-    <div class="chat-toggle" id="chatToggleBtn" title="Chat with KisanBot AI" aria-label="Toggle KisanBot AI Assistant">
-      <span class="chat-icon" id="chatToggleIcon">💬</span>
+    <div class="chat-toggle" id="chatToggleBtn" title="Helpdesk &amp; Support Assistant" aria-label="Toggle Helpdesk Assistant">
+      <span class="chat-icon" id="chatToggleIcon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
     </div>
-    <div class="chat-box" id="chatBox" role="dialog" aria-label="KisanBot AI Assistant">
+    <div class="chat-box" id="chatBox" role="dialog" aria-label="KisanMitra Helpdesk Assistant">
       <div class="chat-header">
         <div class="chat-header-info">
-          <span class="chat-bot-avatar">🌾</span>
+          <span class="chat-bot-avatar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </span>
           <div>
-            <h4>KisanBot</h4>
-            <span class="chat-status-dot">● Online (AI Help)</span>
+            <h4>KisanMitra Helpdesk</h4>
+            <span class="chat-status-dot">● Online Support</span>
           </div>
         </div>
         <button id="chatCloseBtn" class="chat-close-btn" title="Close Chat (Esc)" aria-label="Close Chat">✕</button>
       </div>
       <div class="chat-body" id="chatBody">
-        <div class="chat-msg bot-msg">Namaste! I am KisanBot 🌾. How can I help you today? Do you need help checking mandi prices, MSP rates, or booking a procurement slot?</div>
+        <div class="chat-msg bot-msg">Namaste! Welcome to KisanMitra Mandi Helpdesk. How can I assist you today? You can ask about government MSP rates, nearest APMC mandis, slot booking, or queue status.</div>
       </div>
       <div class="chat-input-area">
         <input type="text" id="chatInput" placeholder="Type message in English / हिंदी / தமிழ்..." autocomplete="off" />
-        <button id="chatSendBtn" title="Send Message" aria-label="Send Message">➤</button>
+        <button id="chatSendBtn" title="Send Message" aria-label="Send Message">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
       </div>
     </div>
   </div>

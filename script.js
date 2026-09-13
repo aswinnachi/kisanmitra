@@ -46,14 +46,14 @@ let currentLang = localStorage.getItem('kisan_lang') || 'en'; // 'en', 'ta', 'hi
 
 const I18N = {
   en: {
-    nav_find_mandi: '📍 Find Mandi',
-    nav_directory: '🏛️ State Directory',
-    nav_tracker: '🎟️ Pass Tracker',
-    nav_book_slot: '📅 Book Slot',
-    nav_admin: '⚙️ Mandi Admin',
+    nav_find_mandi: 'Find Mandi',
+    nav_directory: 'State Directory',
+    nav_tracker: 'Pass Tracker',
+    nav_book_slot: 'Book Slot',
+    nav_admin: 'Mandi Admin',
     nav_how_it_works: 'How It Works',
     nav_about: 'About',
-    nav_officer_login: '⚙️ Officer Login',
+    nav_officer_login: 'Officer Login',
     nav_login: 'Official / Farmer Login',
     nav_register: 'Register',
     
@@ -67,14 +67,14 @@ const I18N = {
     stat_mandis: 'Govt Mandis',
     stat_dbt: 'Digital DBT Payments',
     btn_book_slot: 'Book Procurement Slot',
-    btn_view_directory: '🏛️ Browse State Mandis',
-    btn_admin_portal: '⚙️ Mandi Admin Portal',
+    btn_view_directory: 'Browse State Mandis',
+    btn_admin_portal: 'Mandi Admin Portal',
     
-    phone_greeting: 'Namaste, Ramesh 🙏',
+    phone_greeting: 'Namaste, Ramesh Patil',
     phone_today: 'Today',
-    card_active_slot: '● Active Slot',
+    card_active_slot: 'Active Slot',
     card_queue_eta: '2 farmers ahead • Turn in ~15 mins',
-    card_completed_paid: '✓ Completed & Paid',
+    card_completed_paid: 'Completed & Paid',
     paid_badge: 'Transferred via DBT',
     scroll_label: 'Scroll',
     
@@ -84,11 +84,11 @@ const I18N = {
     locator_desc: 'Enter postal pincode, district, or mandi name to locate verified Government APMC Regulated Markets, full addresses, contact numbers, and open capacity.',
     pincode_label: 'Enter Pincode / District',
     pincode_placeholder: 'e.g. 642001, 638107, 422001, Coimbatore, Erode...',
-    btn_search_mandis: '🔍 Search Mandis',
-    btn_auto_detect: '🎯 Auto Detect Location',
+    btn_search_mandis: 'Search Mandis',
+    btn_auto_detect: 'Auto Detect Location',
     quick_pins_label: 'Quick Pincode Examples:',
     found_mandis_text: 'Government Mandis Found',
-    live_dist_tag: '✓ Proximity Sorted',
+    live_dist_tag: 'Proximity Sorted',
     
     // Directory
     dir_label: 'All-India APMC Directory',
@@ -125,23 +125,23 @@ const I18N = {
     admin_desc: 'Each Government Mandi operates independently. Select any Mandi to view its isolated slot capacity, live calling queue, IoT weighbridge scale logs, and DBT payment settlements.',
     admin_portal_box_title: 'APMC Superintendent & Weighbridge Officer Suite',
     admin_portal_box_desc: 'Authorized mandi personnel can log in with their Mandi Centre credentials to announce tokens, capture IoT gross/tare weights, issue official stamped receipts, and manage daily quota.',
-    btn_enter_admin_portal: '🔐 Enter APMC Officer Admin Portal',
-    btn_book_farmer_slot: '👨‍🌾 Farmer Slot Booking',
-    admin_select_lbl: '🏛️ Select Operating Mandi Centre:',
-    tab_overview: '📊 Live Overview',
-    tab_queue: '👨‍🌾 Live Queue & Calling',
-    tab_weighbridge: '⚖️ IoT Weighbridge Terminal',
-    tab_slots: '📅 Slot & Capacity Control',
-    tab_msp: '🌾 Daily MSP Rates Master',
-    tab_reports: '💳 DBT Settlements & Reports',
+    btn_enter_admin_portal: 'Enter APMC Officer Admin Portal',
+    btn_book_farmer_slot: 'Farmer Slot Booking',
+    admin_select_lbl: 'Select Operating Mandi Centre:',
+    tab_overview: 'Live Overview',
+    tab_queue: 'Live Queue & Calling',
+    tab_weighbridge: 'IoT Weighbridge Terminal',
+    tab_slots: 'Slot & Capacity Control',
+    tab_msp: 'Daily MSP Rates Master',
+    tab_reports: 'DBT Settlements & Reports',
     
     stat_today_bookings: 'Total Bookings Today',
     stat_procured: 'Procured & Weighed',
     stat_in_queue: 'Currently in Queue',
     stat_dbt_payouts: 'DBT Payouts Settled',
     
-    now_serving_title: '📢 NOW SERVING AT WEIGHBRIDGE #1',
-    btn_call_next: '🔊 Call Next Farmer',
+    now_serving_title: 'NOW SERVING AT WEIGHBRIDGE #1',
+    btn_call_next: 'Call Next Farmer',
     today_queue_title: 'Today\'s Mandi Token Queue',
     live_sync_tag: 'Live Syncing',
     
@@ -153,7 +153,7 @@ const I18N = {
     th_slot: 'Slot Time',
     th_status: 'Status',
     th_actions: 'Actions',
-    btn_advance: 'Advance Stage ➔',
+    btn_advance: 'Advance Stage',
 
     // Problem Section
     problem_label: 'The Problem',
@@ -193,34 +193,34 @@ const I18N = {
     outcome_desc: 'Farmers save hours, mandis run efficiently, and the entire procurement process becomes transparent and dignified.',
 
     // Booking Page
-    booking_page_title: '📅 Farmer Procurement Slot Booking',
+    booking_page_title: 'Farmer Procurement Slot Booking',
     booking_page_subtitle: 'Schedule your mandi delivery appointment in advance to avoid long truck queues, ensure instant weighment, and secure government MSP rates.',
     step1_mandi_header: 'Select Government APMC Mandi Centre',
     step2_farmer_header: 'Farmer & Crop Information',
     step3_schedule_header: 'Choose Reporting Date & Time Slot',
-    btn_confirm_generate_pass: '🎟️ Confirm Booking & Generate Digital Pass',
-    summary_header: '📊 Booking & MSP Calculation',
+    btn_confirm_generate_pass: 'Confirm Booking & Generate Digital Pass',
+    summary_header: 'Booking & MSP Calculation',
 
     // Admin
     admin_auth_title: 'APMC Officer Authentication',
     admin_auth_subtitle: 'Enter your designated Mandi Centre credentials to access the live operations suite.',
-    admin_login_btn: '🔐 Secure Officer Login & Open Command Center',
+    admin_login_btn: 'Secure Officer Login & Open Command Center',
     
     // Buttons
-    btn_book_here: '🎟️ Book Slot',
-    btn_call_mandi: '📞 Call Mandi',
-    btn_call_centre: '📞 Call Centre'
+    btn_book_here: 'Book Slot',
+    btn_call_mandi: 'Call Mandi',
+    btn_call_centre: 'Call Centre'
   },
   
   ta: {
-    nav_find_mandi: '📍 மண்டி தேடல்',
-    nav_directory: '🏛️ மாநில மண்டிகள்',
-    nav_tracker: '🎟️ டோக்கன் நிலை',
-    nav_book_slot: '📅 முன்பதிவு',
-    nav_admin: '⚙️ மண்டி நிர்வாகம்',
+    nav_find_mandi: 'மண்டி தேடல்',
+    nav_directory: 'மாநில மண்டிகள்',
+    nav_tracker: 'டோக்கன் நிலை',
+    nav_book_slot: 'முன்பதிவு',
+    nav_admin: 'மண்டி நிர்வாகம்',
     nav_how_it_works: 'எப்படி செயல்படுகிறது',
     nav_about: 'எங்களை பற்றி',
-    nav_officer_login: '⚙️ அதிகாரி உள்நுழைவு',
+    nav_officer_login: 'அதிகாரி உள்நுழைவு',
     nav_login: 'அதிகாரி / விவசாயி உள்நுழைவு',
     nav_register: 'பதிவு செய்க',
     
@@ -234,14 +234,14 @@ const I18N = {
     stat_mandis: 'அரசு மண்டிகள்',
     stat_dbt: 'நேரடி வங்கி பரிமாற்றம்',
     btn_book_slot: 'கொள்முதல் நேரம் முன்பதிவு செய்க',
-    btn_view_directory: '🏛️ அரசு மண்டிகள் பட்டியல்',
-    btn_admin_portal: '⚙️ மண்டி நிர்வாக தளம்',
+    btn_view_directory: 'அரசு மண்டிகள் பட்டியல்',
+    btn_admin_portal: 'மண்டி நிர்வாக தளம்',
     
-    phone_greeting: 'வணக்கம், விவசாயி 🙏',
+    phone_greeting: 'வணக்கம், விவசாயி',
     phone_today: 'இன்று',
-    card_active_slot: '● நடப்பு முன்பதிவு',
+    card_active_slot: 'நடப்பு முன்பதிவு',
     card_queue_eta: '2 விவசாயிகள் முன்னால் • ~15 நிமிடத்தில் உங்கள் முறை',
-    card_completed_paid: '✓ கொள்முதல் & பணம் செலுத்தப்பட்டது',
+    card_completed_paid: 'கொள்முதல் & பணம் செலுத்தப்பட்டது',
     paid_badge: 'வங்கி கணக்கில் செலுத்தப்பட்டது (DBT)',
     scroll_label: 'கீழே உருட்டவும்',
     
@@ -251,11 +251,11 @@ const I18N = {
     locator_desc: 'அரசு ஒழுங்குமுறை விற்பனைக்கூடங்கள், முழு முகவரி, மண்டி செயலாளர் தொலைபேசி எண் மற்றும் இன்றைய காலி இடங்களை அறிய அஞ்சல் குறியீடு அல்லது மாவட்டத்தை உள்ளிடவும்.',
     pincode_label: 'அஞ்சல் குறியீடு / மாவட்டம் உள்ளிடவும்',
     pincode_placeholder: 'எ.கா: 642001, 638107, பொள்ளாச்சி, ஈரோடு, சேலம்...',
-    btn_search_mandis: '🔍 மண்டிகளைத் தேடுக',
-    btn_auto_detect: '🎯 இருப்பிடத்தைக் கண்டறி',
+    btn_search_mandis: 'மண்டிகளைத் தேடுக',
+    btn_auto_detect: 'இருப்பிடத்தைக் கண்டறி',
     quick_pins_label: 'மாதிரி பின்கோடுகள்:',
     found_mandis_text: 'அரசு மண்டிகள் கண்டறியப்பட்டன',
-    live_dist_tag: '✓ தூரம் கணக்கிடப்பட்டது',
+    live_dist_tag: 'தூரம் கணக்கிடப்பட்டது',
     
     // Directory
     dir_label: 'அனைத்திந்திய அரசு மண்டி அடைவு',
@@ -292,23 +292,23 @@ const I18N = {
     admin_desc: 'ஒவ்வொரு அரசு மண்டியும் தனித்தனியாக இயங்குகிறது. ஏதேனும் ஒரு மண்டியைத் தேர்ந்தெடுத்து அதன் டோக்கன் வரிசை, IoT எடை மேடை மற்றும் வங்கி பரிவர்த்தனைகளை நிர்வகிக்கவும்.',
     admin_portal_box_title: 'அரசு மண்டி கண்காணிப்பாளர் மற்றும் எடை மேடை தளம்',
     admin_portal_box_desc: 'அங்கீகரிக்கப்பட்ட அதிகாரிகள் தங்கள் மண்டி நற்சான்றிதழ்களுடன் உள்நுழைந்து டோக்கன் அழைப்பு, IoT எடை பதிவு மற்றும் DBT கட்டணத்தை வழங்கலாம்.',
-    btn_enter_admin_portal: '🔐 மண்டி அதிகாரி தளத்திற்குள் நுழைக',
-    btn_book_farmer_slot: '👨‍🌾 விவசாயி நேர முன்பதிவு',
-    admin_select_lbl: '🏛️ செயல்படும் மண்டியைத் தேர்ந்தெடுக்கவும்:',
-    tab_overview: '📊 நேரலை கண்ணோட்டம்',
-    tab_queue: '👨‍🌾 நேரலை டோக்கன் அழைப்பு',
-    tab_weighbridge: '⚖️ IoT எடை மேடை முனையம்',
-    tab_slots: '📅 நேர ஒதுக்கீடு & கொள்ளளவு',
-    tab_msp: '🌾 தினசரி அரசு கொள்முதல் விலை (MSP)',
-    tab_reports: '💳 வங்கி பரிவர்த்தனை அறிக்கைகள்',
+    btn_enter_admin_portal: 'மண்டி அதிகாரி தளத்திற்குள் நுழைக',
+    btn_book_farmer_slot: 'விவசாயி நேர முன்பதிவு',
+    admin_select_lbl: 'செயல்படும் மண்டியைத் தேர்ந்தெடுக்கவும்:',
+    tab_overview: 'நேரலை கண்ணோட்டம்',
+    tab_queue: 'நேரலை டோக்கன் அழைப்பு',
+    tab_weighbridge: 'IoT எடை மேடை முனையம்',
+    tab_slots: 'நேர ஒதுக்கீடு & கொள்ளளவு',
+    tab_msp: 'தினசரி அரசு கொள்முதல் விலை (MSP)',
+    tab_reports: 'வங்கி பரிவர்த்தனை அறிக்கைகள்',
     
     stat_today_bookings: 'இன்றைய மொத்த முன்பதிவுகள்',
     stat_procured: 'எடை போடப்பட்டு முடிந்தது',
     stat_in_queue: 'தற்போது வரிசையில் உள்ளவர்கள்',
     stat_dbt_payouts: 'வங்கிக்கு அனுப்பப்பட்ட தொகை',
     
-    now_serving_title: '📢 எடை மேடை எண் #1-ல் அழைக்கப்படுகிறது',
-    btn_call_next: '🔊 அடுத்த விவசாயியை அழைக்கவும்',
+    now_serving_title: 'எடை மேடை எண் #1-ல் அழைக்கப்படுகிறது',
+    btn_call_next: 'அடுத்த விவசாயியை அழைக்கவும்',
     today_queue_title: 'இன்றைய மண்டி டோக்கன் வரிசை',
     live_sync_tag: 'நேரலை புதுப்பிப்பு',
     
@@ -320,12 +320,12 @@ const I18N = {
     th_slot: 'நேரம்',
     th_status: 'நிலை',
     th_actions: 'செயல்பாடு',
-    btn_advance: 'அடுத்த கட்டம் ➔',
+    btn_advance: 'அடுத்த கட்டம்',
     
     // Admin
     admin_auth_title: 'APMC அதிகாரி அங்கீகாரம்',
     admin_auth_subtitle: 'நேரலை செயல்பாட்டு தொகுப்பை அணுக உங்கள் மண்டி மைய சான்றுகளை உள்ளிடவும்.',
-    admin_login_btn: '🔐 பாதுகாப்பான அதிகாரி உள்நுழைவு',
+    admin_login_btn: 'பாதுகாப்பான அதிகாரி உள்நுழைவு',
 
     // Problem Section
     problem_label: 'பிரச்சினை',
@@ -365,29 +365,29 @@ const I18N = {
     outcome_desc: 'விவசாயிகளுக்கு நேரம் மிச்சமாகிறது, அரசு மண்டிகள் சிறப்பாக இயங்குகின்றன, கவுரவமான கொள்முதல் சாத்தியமாகிறது.',
 
     // Booking Page
-    booking_page_title: '📅 விவசாயி கொள்முதல் நேர முன்பதிவு',
+    booking_page_title: 'விவசாயி கொள்முதல் நேர முன்பதிவு',
     booking_page_subtitle: 'நெரிசலைத் தவிர்க்கவும், விரைவான எடையிடல் மற்றும் அரசு MSP விலையைப் பெறவும் முன்கூட்டியே நேரத்தை பதிவு செய்யுங்கள்.',
     step1_mandi_header: 'அரசு ஒழுங்குமுறை விற்பனைக்கூடத்தைத் தேர்ந்தெடுக்கவும்',
     step2_farmer_header: 'விவசாயி & பயிர் விவரங்கள்',
     step3_schedule_header: 'தேதி & நேர இடைவெளியைத் தேர்வு செய்க',
-    btn_confirm_generate_pass: '🎟️ முன்பதிவை உறுதி செய்து இ-பாஸ் பெறுக',
-    summary_header: '📊 முன்பதிவு & விலை கணக்கீடு',
+    btn_confirm_generate_pass: 'முன்பதிவை உறுதி செய்து இ-பாஸ் பெறுக',
+    summary_header: 'முன்பதிவு & விலை கணக்கீடு',
     
     // Buttons
-    btn_book_here: '🎟️ நேரம் பதிவு செய்',
-    btn_call_mandi: '📞 மண்டிக்கு அழை',
-    btn_call_centre: '📞 மையத்திற்கு அழை'
+    btn_book_here: 'நேரம் பதிவு செய்',
+    btn_call_mandi: 'மண்டிக்கு அழை',
+    btn_call_centre: 'மையத்திற்கு அழை'
   },
   
   hi: {
-    nav_find_mandi: '📍 मंडी खोजें',
-    nav_directory: '🏛️ राज्य डायरेक्टरी',
-    nav_tracker: '🎟️ पास ट्रैकर',
-    nav_book_slot: '📅 स्लॉट बुकिंग',
-    nav_admin: '⚙️ मंडी एडमिन',
+    nav_find_mandi: 'मंडी खोजें',
+    nav_directory: 'राज्य डायरेक्टरी',
+    nav_tracker: 'पास ट्रैकर',
+    nav_book_slot: 'स्लॉट बुकिंग',
+    nav_admin: 'मंडी एडमिन',
     nav_how_it_works: 'यह कैसे काम करता है',
     nav_about: 'हमारे बारे में',
-    nav_officer_login: '⚙️ अधिकारी लॉगिन',
+    nav_officer_login: 'अधिकारी लॉगिन',
     nav_login: 'अधिकारी / किसान लॉगिन',
     nav_register: 'पंजीकरण करें',
     
@@ -401,14 +401,14 @@ const I18N = {
     stat_mandis: 'सरकारी मंडियां',
     stat_dbt: 'डिजिटल डीबीटी भुगतान',
     btn_book_slot: 'खरीद स्लॉट बुक करें',
-    btn_view_directory: '🏛️ राज्य मंडियां देखें',
-    btn_admin_portal: '⚙️ मंडी एडमिन पोर्टल',
+    btn_view_directory: 'राज्य मंडियां देखें',
+    btn_admin_portal: 'मंडी एडमिन पोर्टल',
     
-    phone_greeting: 'नमस्ते, रमेश 🙏',
+    phone_greeting: 'नमस्ते, रमेश पाटील',
     phone_today: 'आज',
-    card_active_slot: '● सक्रिय स्लॉट',
+    card_active_slot: 'सक्रिय स्लॉट',
     card_queue_eta: '2 किसान आगे • ~15 मिनट में आपकी बारी',
-    card_completed_paid: '✓ पूर्ण और भुगतान हुआ',
+    card_completed_paid: 'पूर्ण और भुगतान हुआ',
     paid_badge: 'डीबीटी द्वारा हस्तांतरित',
     scroll_label: 'नीचे स्क्रॉल करें',
     
@@ -418,11 +418,11 @@ const I18N = {
     locator_desc: 'पिनकोड, जिला या मंडी का नाम दर्ज करके निकटतम सरकारी एपीएमसी मंडियों, पते, संपर्क नंबर और उपलब्ध स्लॉट की जानकारी पाएं।',
     pincode_label: 'पिनकोड / जिला दर्ज करें',
     pincode_placeholder: 'उदा: 422001, 141001, 462038, भोपाल, नासिक...',
-    btn_search_mandis: '🔍 मंडी खोजें',
-    btn_auto_detect: '🎯 स्थान का स्वतः पता लगाएं',
+    btn_search_mandis: 'मंडी खोजें',
+    btn_auto_detect: 'स्थान का स्वतः पता लगाएं',
     quick_pins_label: 'पॉपुलर पिनकोड:',
     found_mandis_text: 'सरकारी मंडियां मिलीं',
-    live_dist_tag: '✓ दूरी अनुसार क्रमबद्ध',
+    live_dist_tag: 'दूरी अनुसार क्रमबद्ध',
     
     // Directory
     dir_label: 'अखिल भारतीय एपीएमसी डायरेक्टरी',
@@ -459,23 +459,23 @@ const I18N = {
     admin_desc: 'प्रत्येक सरकारी मंडी स्वतंत्र रूप से काम करती है। किसी भी मंडी का चयन करके उसके टोकन, वजन और भुगतान का प्रबंधन करें।',
     admin_portal_box_title: 'एपीएमसी अधीक्षक और वे-ब्रिज अधिकारी सूट',
     admin_portal_box_desc: 'अधिकृत मंडी कर्मचारी टोकन बुलाने, डिजिटल वजन रिकॉर्ड करने और डीबीटी भुगतान स्वीकृत करने के लिए लॉगिन करें।',
-    btn_enter_admin_portal: '🔐 एपीएमसी अधिकारी पोर्टल में प्रवेश करें',
-    btn_book_farmer_slot: '👨‍🌾 किसान स्लॉट बुकिंग',
-    admin_select_lbl: '🏛️ ऑपरेटिंग मंडी केंद्र चुनें:',
-    tab_overview: '📊 लाइव अवलोकन',
-    tab_queue: '👨‍🌾 लाइव टोकन कॉलिंग',
-    tab_weighbridge: '⚖️ आईओटी वजन कांटा टर्मिनल',
-    tab_slots: '📅 स्लॉट और क्षमता नियंत्रण',
-    tab_msp: '🌾 दैनिक एमएसपी दरें',
-    tab_reports: '💳 डीबीटी भुगतान रिपोर्ट',
+    btn_enter_admin_portal: 'एपीएमसी अधिकारी पोर्टल में प्रवेश करें',
+    btn_book_farmer_slot: 'किसान स्लॉट बुकिंग',
+    admin_select_lbl: 'ऑपरेटिंग मंडी केंद्र चुनें:',
+    tab_overview: 'लाइव अवलोकन',
+    tab_queue: 'लाइव टोकन कॉलिंग',
+    tab_weighbridge: 'आईओटी वजन कांटा टर्मिनल',
+    tab_slots: 'स्लॉट और क्षमता नियंत्रण',
+    tab_msp: 'दैनिक एमएसपी दरें',
+    tab_reports: 'डीबीटी भुगतान रिपोर्ट',
     
     stat_today_bookings: 'आज की कुल बुकिंग',
     stat_procured: 'वजन पूरा हुआ',
     stat_in_queue: 'वर्तमान में कतार में',
     stat_dbt_payouts: 'निपटाई गई डीबीटी राशि',
     
-    now_serving_title: '📢 वे-ब्रिज #1 पर बुलावा',
-    btn_call_next: '🔊 अगले किसान को बुलाएं',
+    now_serving_title: 'वे-ब्रिज #1 पर बुलावा',
+    btn_call_next: 'अगले किसान को बुलाएं',
     today_queue_title: 'आज की मंडी टोकन कतार',
     live_sync_tag: 'लाइव सिंक',
     
@@ -487,12 +487,12 @@ const I18N = {
     th_slot: 'स्लॉट समय',
     th_status: 'स्थिति',
     th_actions: 'कार्रवाई',
-    btn_advance: 'अगला चरण ➔',
+    btn_advance: 'अगला चरण',
     
     // Admin
     admin_auth_title: 'APMC अधिकारी प्रमाणीकरण',
     admin_auth_subtitle: 'लाइव ऑपरेशंस सूट तक पहुंचने के लिए अपने मंडी केंद्र के क्रेडेंशियल दर्ज करें।',
-    admin_login_btn: '🔐 सुरक्षित अधिकारी लॉगिन',
+    admin_login_btn: 'सुरक्षित अधिकारी लॉगिन',
 
     // Problem Section
     problem_label: 'समस्या',
@@ -532,18 +532,18 @@ const I18N = {
     outcome_desc: 'किसानों का समय बचता है और पारदर्शी प्रक्रिया सुनिश्चित होती है।',
 
     // Booking Page
-    booking_page_title: '📅 किसान खरीद स्लॉट बुकिंग',
+    booking_page_title: 'किसान खरीद स्लॉट बुकिंग',
     booking_page_subtitle: 'लंबी कतारों से बचने, तत्काल वजन और सरकारी एमएसपी दर सुनिश्चित करने के लिए पहले से समय बुक करें।',
     step1_mandi_header: 'सरकारी एपीएमसी मंडी केंद्र चुनें',
     step2_farmer_header: 'किसान और फसल की जानकारी',
     step3_schedule_header: 'तारीख और समय चुनें',
-    btn_confirm_generate_pass: '🎟️ बुकिंग कन्फर्म करें और डिजिटल पास प्राप्त करें',
-    summary_header: '📊 बुकिंग और एमएसपी गणना',
+    btn_confirm_generate_pass: 'बुकिंग कन्फर्म करें और डिजिटल पास प्राप्त करें',
+    summary_header: 'बुकिंग और एमएसपी गणना',
     
     // Buttons
-    btn_book_here: '🎟️ स्लॉट बुक करें',
-    btn_call_mandi: '📞 मंडी को कॉल करें',
-    btn_call_centre: '📞 केंद्र को कॉल करें'
+    btn_book_here: 'स्लॉट बुक करें',
+    btn_call_mandi: 'मंडी को कॉल करें',
+    btn_call_centre: 'केंद्र को कॉल करें'
   }
 };
 
@@ -1157,23 +1157,23 @@ document.addEventListener('DOMContentLoaded', () => {
       card.innerHTML = `
         <div>
           <span class="mandi-card-badge-top">PIN: ${mandi.pincode}</span>
-          <div class="mandi-distance-tag">📍 ~${mandi.computedDistance} km</div>
+          <div class="mandi-distance-tag">~${mandi.computedDistance} km</div>
           <h3 class="mandi-title">${mandi.name}</h3>
-          <span class="mandi-type-tag">🏛️ ${mandi.type} • ${mandi.districtName}</span>
+          <span class="mandi-type-tag">${mandi.type} • ${mandi.districtName}</span>
           
           <div class="mandi-address-box">
-            <strong>📮 Full Address:</strong>
+            <strong>Full Address:</strong>
             ${mandi.address}
           </div>
 
           <div class="mandi-contact-list">
             <div class="mandi-contact-item">
               <span class="contact-label">Secretary:</span>
-              <a href="tel:${mandi.secretaryPhone}">📞 ${mandi.secretaryPhone}</a>
+              <a href="tel:${mandi.secretaryPhone}">${mandi.secretaryPhone}</a>
             </div>
             <div class="mandi-contact-item">
               <span class="contact-label">Helpdesk:</span>
-              <a href="tel:${mandi.phone}">☎️ ${mandi.phone}</a>
+              <a href="tel:${mandi.phone}">${mandi.phone}</a>
             </div>
             <div class="mandi-contact-item">
               <span class="contact-label">Available Slots:</span>
@@ -1188,10 +1188,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="mandi-card-actions">
           <button class="btn btn-gold btn-block book-this-mandi-btn" data-mandi-id="${mandi.id}">
-            <span>${t.btn_book_here || '🎟️ Book Slot'}</span>
+            <span>${t.btn_book_here || 'Book Slot'}</span>
           </button>
           <a href="tel:${mandi.phone}" class="btn btn-outline btn-block">
-            <span>${t.btn_call_mandi || '📞 Call Mandi'}</span>
+            <span>${t.btn_call_mandi || 'Call Mandi'}</span>
           </a>
         </div>
       `;
@@ -1228,14 +1228,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   detectLocationBtn?.addEventListener('click', () => {
-    detectLocationBtn.innerHTML = '<span>⏳ Detecting GPS...</span>';
+    detectLocationBtn.innerHTML = '<span>Detecting Location...</span>';
     setTimeout(() => {
       if (pincodeInput) pincodeInput.value = '642001';
       renderPincodeResults('642001');
-      detectLocationBtn.innerHTML = '<span>🎯 Located (642001 - Pollachi)</span>';
+      detectLocationBtn.innerHTML = '<span>Located (642001 - Pollachi)</span>';
       setTimeout(() => {
         const t = I18N[currentLang] || I18N.en;
-        detectLocationBtn.innerHTML = `<span>${t.btn_auto_detect || '🎯 Auto Detect Location'}</span>`;
+        detectLocationBtn.innerHTML = `<span>${t.btn_auto_detect || 'Auto Detect Location'}</span>`;
       }, 3000);
     }, 600);
   });
@@ -1295,7 +1295,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filtered.length === 0) {
       directoryMandiGrid.innerHTML = `
         <div style="grid-column: 1/-1; text-align: center; padding: 40px; background: #ffffff; border-radius: var(--radius-lg); border: 1px dashed var(--green-300);">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 12px;">🌾</span>
           <h3>No Government Mandis matching this filter</h3>
           <p style="color: var(--text-muted);">Try selecting "All Districts" or clearing the search keyword.</p>
         </div>
@@ -1313,22 +1312,22 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>
           <span class="mandi-card-badge-top">PIN: ${mandi.pincode}</span>
           <h3 class="mandi-title">${mandi.name}</h3>
-          <span class="mandi-type-tag">🏛️ ${mandi.type} • ${mandi.districtName}, ${mandi.stateName}</span>
+          <span class="mandi-type-tag">${mandi.type} • ${mandi.districtName}, ${mandi.stateName}</span>
           
           <div class="mandi-address-box">
-            <strong>📍 Address:</strong>
+            <strong>Address:</strong>
             ${mandi.address}
-            <div style="margin-top: 4px; font-size: 0.75rem; color: var(--green-800);"><strong>⏰ Timings:</strong> ${mandi.operatingHours}</div>
+            <div style="margin-top: 4px; font-size: 0.75rem; color: var(--green-800);"><strong>Operating Hours:</strong> ${mandi.operatingHours}</div>
           </div>
 
           <div class="mandi-contact-list">
             <div class="mandi-contact-item">
               <span class="contact-label">Secretary:</span>
-              <a href="tel:${mandi.secretaryPhone}">📞 ${mandi.secretaryPhone}</a>
+              <a href="tel:${mandi.secretaryPhone}">${mandi.secretaryPhone}</a>
             </div>
             <div class="mandi-contact-item">
               <span class="contact-label">Helpline:</span>
-              <a href="tel:${mandi.phone}">☎️ ${mandi.phone}</a>
+              <a href="tel:${mandi.phone}">${mandi.phone}</a>
             </div>
             <div class="mandi-contact-item">
               <span class="contact-label">Open Slots:</span>
@@ -1343,10 +1342,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="mandi-card-actions">
           <button class="btn btn-gold btn-block book-this-mandi-btn" data-mandi-id="${mandi.id}">
-            <span>${t.btn_book_here || '🎟️ Book Slot'}</span>
+            <span>${t.btn_book_here || 'Book Slot'}</span>
           </button>
           <a href="tel:${mandi.phone}" class="btn btn-outline btn-block">
-            <span>${t.btn_call_centre || '📞 Call Centre'}</span>
+            <span>${t.btn_call_centre || 'Call Centre'}</span>
           </a>
         </div>
       `;
@@ -1595,10 +1594,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (farmer) {
       navAuthArea.innerHTML = `
         <div class="user-profile-badge">
-          <span class="user-avatar">👨‍🌾</span>
+          <span class="user-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
           <span class="user-name">${farmer.name || 'Ramesh Kumar'}</span>
           <a href="book-slot.html" class="btn btn-sm btn-gold" style="padding: 4px 10px; font-size: 0.78rem;">Book Slot</a>
-          <button class="btn btn-sm btn-outline-danger" id="navLogoutBtn" style="padding: 4px 8px; font-size: 0.78rem;">🚪 Exit</button>
+          <button class="btn btn-sm btn-outline-danger" id="navLogoutBtn" style="padding: 4px 8px; font-size: 0.78rem;">Exit</button>
         </div>
       `;
       document.getElementById('navLogoutBtn')?.addEventListener('click', () => {
@@ -1611,10 +1610,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (admin) {
       navAuthArea.innerHTML = `
         <div class="user-profile-badge officer">
-          <span class="user-avatar">🏛️</span>
+          <span class="user-avatar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3L2 10h20L12 3z"/></svg></span>
           <span class="user-name">${admin.officerId || 'Officer TN-101'}</span>
           <a href="admin.html" class="btn btn-sm btn-gold" style="padding: 4px 10px; font-size: 0.78rem;">Admin Suite</a>
-          <button class="btn btn-sm btn-outline-danger" id="navLogoutBtn" style="padding: 4px 8px; font-size: 0.78rem;">🚪 Exit</button>
+          <button class="btn btn-sm btn-outline-danger" id="navLogoutBtn" style="padding: 4px 8px; font-size: 0.78rem;">Exit</button>
         </div>
       `;
       document.getElementById('navLogoutBtn')?.addEventListener('click', () => {
@@ -1628,10 +1627,10 @@ document.addEventListener('DOMContentLoaded', () => {
       navAuthArea.innerHTML = `
         <div style="display: flex; gap: 8px; align-items: center;">
           <button class="btn btn-outline" id="navRegisterBtn" style="padding: 7px 14px; font-weight: 600; font-size: 0.85rem; border: 1.5px solid var(--primary); color: var(--primary);">
-            📝 Register
+            Register
           </button>
           <button class="btn btn-gold" id="navLoginBtn" style="padding: 7px 16px; font-weight: 600; font-size: 0.85rem;">
-            🔑 Login
+            Login
           </button>
         </div>
       `;
@@ -2007,8 +2006,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (previewMandiDetails) {
         const openSlots = mandi.slots.reduce((acc, s) => acc + (s.max - s.booked), 0);
         previewMandiDetails.innerHTML = `
-          📍 ${mandi.address} | 📞 Helpdesk: <a href="tel:${mandi.phone}">${mandi.phone}</a><br/>
-          ⏰ Operating Hours: ${mandi.operatingHours} | 🟢 <strong>Today's Available Capacity: ${openSlots} Vehicles</strong>
+          ${mandi.address} | Helpdesk: <a href="tel:${mandi.phone}">${mandi.phone}</a><br/>
+          Operating Hours: ${mandi.operatingHours} | <strong>Today's Available Capacity: ${openSlots} Vehicles</strong>
         `;
       }
       if (summaryMandiName) summaryMandiName.textContent = mandi.name;
@@ -2038,7 +2037,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (summaryMspRate) summaryMspRate.textContent = `₹${msp.toLocaleString('en-IN')} / Quintal`;
       if (summaryQuantity) summaryQuantity.textContent = `${qty} Quintals (Est.)`;
       if (summaryTotalPayout) {
-        summaryTotalPayout.textContent = '⏳ Pending Yard Inspection';
+        summaryTotalPayout.textContent = 'Pending Yard Inspection';
         summaryTotalPayout.style.color = '#b45309';
       }
     }
@@ -2169,7 +2168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tr = document.createElement('tr');
         const isVerified = item.status === 'Completed' || item.priceStatus === 'Verified';
         const statusClass = isVerified ? 'green' : item.status === 'Weighing' ? 'blue' : item.status === 'Gate In' ? 'amber' : 'purple';
-        const priceLabel = isVerified && item.finalTotalPayout ? `₹${item.finalTotalPayout.toLocaleString('en-IN')}` : '⏳ Pending Check';
+        const priceLabel = isVerified && item.finalTotalPayout ? `₹${item.finalTotalPayout.toLocaleString('en-IN')}` : 'Pending Check';
         
         tr.innerHTML = `
           <td><strong>${item.token}</strong></td>
@@ -2180,7 +2179,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <td><span class="badge-tag ${statusClass}">${item.status}</span></td>
           <td><strong style="color: ${isVerified ? '#15803d' : '#b45309'};">${priceLabel}</strong></td>
           <td>
-            <button class="btn btn-sm btn-outline call-token-btn" data-token="${item.token}">📢 Call</button>
+            <button class="btn btn-sm btn-outline call-token-btn" data-token="${item.token}">Call</button>
           </td>
         `;
         overviewBody.appendChild(tr);
@@ -2201,9 +2200,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>${item.crop} (${item.estQty} Qtl)</td>
           <td><span class="badge-tag ${statusClass}">${item.status}</span></td>
           <td style="display: flex; gap: 6px;">
-            <button class="btn btn-sm btn-outline call-token-btn" data-token="${item.token}">📢 Call</button>
-            <button class="btn btn-sm btn-gold advance-token-btn" data-token="${item.token}">➔ Next</button>
-            <button class="btn btn-sm btn-outline view-token-mail-btn" data-token="${item.token}">📬 Mail</button>
+            <button class="btn btn-sm btn-outline call-token-btn" data-token="${item.token}">Call</button>
+            <button class="btn btn-sm btn-gold advance-token-btn" data-token="${item.token}">Advance</button>
+            <button class="btn btn-sm btn-outline view-token-mail-btn" data-token="${item.token}">Advice</button>
           </td>
         `;
         manageBody.appendChild(tr);
@@ -2227,7 +2226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nowServingDetails = document.getElementById('nowServingDetails');
         if (nowServingToken) nowServingToken.textContent = `Token ${tokenStr}`;
         if (nowServingDetails) nowServingDetails.textContent = `Farmer: ${item?.farmerName || 'Farmer'} | Crop: ${item?.crop || 'Crop'} | Gate: ${item?.gate || 'Gate #1'}`;
-        alert(`📢 Calling Token ${tokenStr}: ${item?.farmerName} to Weighbridge Scale #1 for Gross Weighment and Final Price Quotation!`);
+        alert(`Calling Token ${tokenStr}: ${item?.farmerName} to Weighbridge Scale #1 for Gross Weighment and Final Price Quotation.`);
         loadAdminMandi(currentAdminMandiId);
       });
     });
@@ -2573,18 +2572,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Overview buttons
     document.getElementById('overviewCallNextBtn')?.addEventListener('click', () => {
       playMandiChime();
-      alert('📢 Calling Next Farmer from the waiting queue to Weighbridge Scale #1!');
+      alert('Calling Next Farmer from waiting queue to Weighbridge Scale #1.');
     });
     document.getElementById('callNextTokenMainBtn')?.addEventListener('click', () => {
       playMandiChime();
-      alert('📢 Calling Next Farmer to Weighbridge!');
+      alert('Calling Next Farmer to Weighbridge.');
     });
     document.getElementById('repeatCallSoundBtn')?.addEventListener('click', () => {
       playMandiChime();
     });
     document.getElementById('refreshQueueBtn')?.addEventListener('click', async () => {
       await pollServerQueue();
-      alert('✓ Token queue refreshed from central APMC cloud server.');
+      alert('Token queue refreshed from central APMC cloud server.');
     });
 
     // Weighment calculation live update
@@ -2703,7 +2702,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('saveSlotConfigBtn')?.addEventListener('click', () => {
-      alert('✓ Mandi time-slot intake limits updated successfully!');
+      alert('Mandi time-slot intake limits updated successfully.');
     });
 
     document.getElementById('addEmergencySlotBtn')?.addEventListener('click', () => {
@@ -2711,21 +2710,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (mandi) {
         mandi.slots.forEach(s => s.max += 5);
         renderSlotsConfigGrid(mandi);
-        alert('🚨 Added +10 emergency overflow procurement slots for today!');
+        alert('Added +10 emergency overflow procurement slots for today.');
       }
     });
 
     document.getElementById('freezeBookingBtn')?.addEventListener('click', () => {
-      alert('❄️ New farmer slot bookings have been temporarily paused for this centre.');
+      alert('New farmer slot bookings have been temporarily paused for this centre.');
     });
 
     document.getElementById('saveMspRatesBtn')?.addEventListener('click', () => {
-      alert('✓ Daily Mandi MSP & Moisture rules updated and broadcasted to portal!');
+      alert('Daily Mandi MSP and moisture rules updated and broadcasted to portal.');
     });
 
     document.getElementById('exportReportBtn')?.addEventListener('click', () => {
       const mandi = MANDI_DATABASE.find(m => m.id === currentAdminMandiId);
-      alert(`📥 Downloading Daily DBT Settlement Batch for ${mandi?.name} (CSV & PFMS Signed Format)...`);
+      alert(`Downloading Daily DBT Settlement Batch for ${mandi?.name} (CSV & PFMS Signed Format)...`);
     });
   }
 
@@ -2787,7 +2786,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const farmerEmail = email?.toEmail || tokItem.email || getFarmerSession()?.email || 'farmer@kisanmitra.gov.in';
 
     if (isBooking) {
-      if (subj) subj.textContent = email?.subject || `📋 [${mandi.name}] Official Procurement Slot Confirmation — Token ${token}`;
+      if (subj) subj.textContent = email?.subject || `[${mandi.name}] Official Procurement Slot Confirmation — Token ${token}`;
       if (senderName) senderName.textContent = email?.fromName || `Government APMC Procurement Authority, ${mandi.name}`;
       if (senderEmail) senderEmail.textContent = `<apmc.procurement@kisanmitra.gov.in>`;
       if (recip) recip.textContent = `${email?.toName || tokItem.farmerName} (${farmerEmail})`;
@@ -2795,7 +2794,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (adviceTitle) adviceTitle.textContent = 'GOVERNMENT APMC MANDI PROCUREMENT CONFIRMATION';
       if (adviceSubtitle) adviceSubtitle.textContent = 'OFFICIAL SCHEDULED PROCUREMENT ENTRY PASS';
-      if (statusStamp) statusStamp.textContent = '✓ SCHEDULED — AWAITING PHYSICAL WEIGHMENT';
+      if (statusStamp) statusStamp.textContent = 'SCHEDULED — AWAITING PHYSICAL WEIGHMENT';
 
       if (tokenNum) tokenNum.textContent = token;
       if (mandiEl) mandiEl.textContent = email?.place || mandi.name;
@@ -2808,7 +2807,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (payoutLabel) payoutLabel.textContent = 'PROCUREMENT PRICING STATUS';
       if (payoutEl) {
-        payoutEl.textContent = '⏳ Pending Physical Yard Inspection';
+        payoutEl.textContent = 'Pending Physical Yard Inspection';
         payoutEl.style.color = '#b45309';
       }
       if (dbtPill) dbtPill.textContent = 'Quotation issued post weighment & grading';
@@ -2830,7 +2829,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const grade = email?.qualityGrade || tokItem.qualityGrade || 'Grade-A (Premium APMC Standard)';
       const moisture = email?.moisture || `${tokItem.moisture || 11.8}% (Approved within 14% ceiling)`;
 
-      if (subj) subj.textContent = email?.subject || `📢 [${mandi.name}] Official Weighment & PFMS DBT Disbursement Intimation — Token ${token}`;
+      if (subj) subj.textContent = email?.subject || `[${mandi.name}] Official Weighment & PFMS DBT Disbursement Intimation — Token ${token}`;
       if (senderName) senderName.textContent = email?.fromName || `Government APMC Procurement Cell, ${mandi.name}`;
       if (senderEmail) senderEmail.textContent = `<apmc.procurement@kisanmitra.gov.in>`;
       if (recip) recip.textContent = `${tokItem.farmerName} (${farmerEmail})`;
@@ -2838,7 +2837,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (adviceTitle) adviceTitle.textContent = 'GOVERNMENT APMC MANDI PROCUREMENT ADVICE';
       if (adviceSubtitle) adviceSubtitle.textContent = 'DIRECT BENEFIT TRANSFER (PFMS) DISBURSEMENT INTIMATION';
-      if (statusStamp) statusStamp.textContent = '✓ CERTIFIED WEIGHMENT & GRADE';
+      if (statusStamp) statusStamp.textContent = 'CERTIFIED WEIGHMENT & GRADE';
 
       if (tokenNum) tokenNum.textContent = token;
       if (mandiEl) mandiEl.textContent = mandi.name;
@@ -2926,13 +2925,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openChat() {
     chatBox.classList.add('active');
-    if (chatToggleIcon) chatToggleIcon.textContent = '✕';
+    if (chatToggleIcon) chatToggleIcon.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
     if (chatInput) setTimeout(() => chatInput.focus(), 150);
   }
 
   function closeChat() {
     chatBox.classList.remove('active');
-    if (chatToggleIcon) chatToggleIcon.textContent = '💬';
+    if (chatToggleIcon) chatToggleIcon.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
   }
 
   function toggleChat() {

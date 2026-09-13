@@ -607,8 +607,21 @@ ul { list-style: none; }
 }
 
 .problem-icon {
-  font-size: 2.5rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--green-100);
+  border: 1px solid var(--green-300);
+  color: var(--green-800);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 16px;
+}
+.problem-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor;
 }
 
 .problem-card h3 {
@@ -698,14 +711,18 @@ ul { list-style: none; }
   border-radius: var(--radius-sm);
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
   margin-bottom: 10px;
 }
-.timeline-icon-wrap.green { background: var(--green-200); }
-.timeline-icon-wrap.blue { background: #dbeafe; }
-.timeline-icon-wrap.teal { background: #ccfbf1; }
-.timeline-icon-wrap.amber { background: #fef3c7; }
-.timeline-icon-wrap.rose { background: #ffe4e6; }
+.timeline-icon-wrap svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+}
+.timeline-icon-wrap.green { background: var(--green-200); color: var(--green-800); }
+.timeline-icon-wrap.blue { background: #dbeafe; color: #1e40af; }
+.timeline-icon-wrap.teal { background: #ccfbf1; color: #0f766e; }
+.timeline-icon-wrap.amber { background: #fef3c7; color: #92400e; }
+.timeline-icon-wrap.rose { background: #ffe4e6; color: #9f1239; }
 
 .timeline-content h3 {
   font-family: var(--font-heading);
@@ -735,8 +752,20 @@ ul { list-style: none; }
   box-shadow: var(--shadow-lg);
 }
 .outcome-icon {
-  font-size: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   flex-shrink: 0;
+}
+.outcome-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
 }
 .outcome-text h3 {
   font-family: var(--font-heading);
@@ -797,12 +826,37 @@ ul { list-style: none; }
 }
 
 .feature-icon-lg {
-  font-size: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   margin-bottom: 20px;
 }
+.feature-icon-lg svg {
+  width: 36px;
+  height: 36px;
+  stroke: currentColor;
+}
 .feature-icon-sm {
-  font-size: 1.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--green-100);
+  border: 1px solid var(--green-300);
+  color: var(--green-800);
   margin-bottom: 14px;
+}
+.feature-icon-sm svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 }
 
 .feature-card h3 {
@@ -1158,8 +1212,21 @@ ul { list-style: none; }
   margin-bottom: 24px;
 }
 .modal-icon {
-  font-size: 2.4rem;
-  margin-bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--green-100);
+  border: 1px solid var(--green-300);
+  color: var(--green-800);
+  margin: 0 auto 12px auto;
+}
+.modal-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
 }
 .modal-header h2 {
   font-family: var(--font-heading);
@@ -2433,10 +2500,21 @@ ul { list-style: none; }
   border-bottom: 1px solid var(--green-200);
 }
 .wb-icon {
-  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   background: var(--green-100);
-  padding: 8px;
+  border: 1px solid var(--green-300);
+  color: var(--green-800);
   border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+.wb-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 }
 .wb-header h3 {
   font-size: 1.2rem;
@@ -3526,10 +3604,18 @@ ul { list-style: none; }
   transform: scale(0.94);
 }
 .chat-icon {
-  font-size: 1.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   color: white;
-  line-height: 1;
   transition: transform 0.2s ease;
+}
+.chat-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
 }
 .chat-box {
   display: none;
